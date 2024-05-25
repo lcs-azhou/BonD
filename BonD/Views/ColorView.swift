@@ -23,8 +23,8 @@ struct ColorView: View {
 }
 
 #Preview {
-    ColorView(color: .green.opacity(0.5), description: "浅绿色")
+    ColorView(color: .green.opacity(0.5), description: "tab1")
         .tabItem {
-            Label("Light Green", systemImage: "4.circle")
+            Label("tab1", systemImage: "4.circle")
         }
 }

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79D520B22C0114B1000FFAB5 /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520B12C0114B1000FFAB5 /* TodoList.swift */; };
+		79D520BB2C011E22000FFAB5 /* SharedAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520BA2C011E22000FFAB5 /* SharedAlbum.swift */; };
+		79D520BD2C012058000FFAB5 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520BC2C012058000FFAB5 /* Activities.swift */; };
 		79F7D6732C0101E6003EB6BC /* BonDApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F7D6722C0101E6003EB6BC /* BonDApp.swift */; };
 		79F7D6772C0101E7003EB6BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79F7D6762C0101E7003EB6BC /* Assets.xcassets */; };
 		79F7D67A2C0101E7003EB6BC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79F7D6792C0101E7003EB6BC /* Preview Assets.xcassets */; };
@@ -15,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		79D520B12C0114B1000FFAB5 /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
+		79D520BA2C011E22000FFAB5 /* SharedAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedAlbum.swift; sourceTree = "<group>"; };
+		79D520BC2C012058000FFAB5 /* Activities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
 		79F7D66F2C0101E6003EB6BC /* BonD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BonD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79F7D6722C0101E6003EB6BC /* BonDApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonDApp.swift; sourceTree = "<group>"; };
 		79F7D6762C0101E7003EB6BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,6 +96,9 @@
 			children = (
 				79F7D6852C010302003EB6BC /* LandingView.swift */,
 				79F7D6892C01067B003EB6BC /* ColorView.swift */,
+				79D520B12C0114B1000FFAB5 /* TodoList.swift */,
+				79D520BA2C011E22000FFAB5 /* SharedAlbum.swift */,
+				79D520BC2C012058000FFAB5 /* Activities.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -174,7 +183,10 @@
 			files = (
 				79F7D68A2C01067B003EB6BC /* ColorView.swift in Sources */,
 				79F7D6862C010302003EB6BC /* LandingView.swift in Sources */,
+				79D520BD2C012058000FFAB5 /* Activities.swift in Sources */,
 				79F7D6732C0101E6003EB6BC /* BonDApp.swift in Sources */,
+				79D520B22C0114B1000FFAB5 /* TodoList.swift in Sources */,
+				79D520BB2C011E22000FFAB5 /* SharedAlbum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
