@@ -28,7 +28,7 @@ struct LandingView: View {
                     Label("tab3", systemImage: "2.circle")
                 }
             
-            ColorView(color: .green.opacity(0.5), description: "tab4")
+            MessageView()
                 .tabItem {
                     Label("tab4", systemImage: "4.circle")
                 }

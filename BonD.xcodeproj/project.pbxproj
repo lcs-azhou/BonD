@@ -10,23 +10,29 @@
 		79D520B22C0114B1000FFAB5 /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520B12C0114B1000FFAB5 /* TodoList.swift */; };
 		79D520BB2C011E22000FFAB5 /* SharedAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520BA2C011E22000FFAB5 /* SharedAlbum.swift */; };
 		79D520BD2C012058000FFAB5 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520BC2C012058000FFAB5 /* Activities.swift */; };
+		79D520C62C0231DA000FFAB5 /* MessageBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520C52C0231DA000FFAB5 /* MessageBubbleView.swift */; };
+		79D520CA2C023358000FFAB5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520C92C023358000FFAB5 /* Message.swift */; };
+		79D520CC2C0233AC000FFAB5 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520CB2C0233AC000FFAB5 /* MessageViewModel.swift */; };
+		79D520CE2C0233D6000FFAB5 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520CD2C0233D6000FFAB5 /* MessageView.swift */; };
 		79F7D6732C0101E6003EB6BC /* BonDApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F7D6722C0101E6003EB6BC /* BonDApp.swift */; };
 		79F7D6772C0101E7003EB6BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79F7D6762C0101E7003EB6BC /* Assets.xcassets */; };
 		79F7D67A2C0101E7003EB6BC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79F7D6792C0101E7003EB6BC /* Preview Assets.xcassets */; };
 		79F7D6862C010302003EB6BC /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F7D6852C010302003EB6BC /* LandingView.swift */; };
-		79F7D68A2C01067B003EB6BC /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F7D6892C01067B003EB6BC /* ColorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		79D520B12C0114B1000FFAB5 /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 		79D520BA2C011E22000FFAB5 /* SharedAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedAlbum.swift; sourceTree = "<group>"; };
 		79D520BC2C012058000FFAB5 /* Activities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
+		79D520C52C0231DA000FFAB5 /* MessageBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubbleView.swift; sourceTree = "<group>"; };
+		79D520C92C023358000FFAB5 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		79D520CB2C0233AC000FFAB5 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
+		79D520CD2C0233D6000FFAB5 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
 		79F7D66F2C0101E6003EB6BC /* BonD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BonD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79F7D6722C0101E6003EB6BC /* BonDApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonDApp.swift; sourceTree = "<group>"; };
 		79F7D6762C0101E7003EB6BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79F7D6792C0101E7003EB6BC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		79F7D6852C010302003EB6BC /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
-		79F7D6892C01067B003EB6BC /* ColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +46,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		79D520C22C023173000FFAB5 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				79D520C52C0231DA000FFAB5 /* MessageBubbleView.swift */,
+				79D520CD2C0233D6000FFAB5 /* MessageView.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
 		79F7D6662C0101E6003EB6BC = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +102,7 @@
 		79F7D6822C010283003EB6BC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				79D520C92C023358000FFAB5 /* Message.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -95,10 +111,10 @@
 			isa = PBXGroup;
 			children = (
 				79F7D6852C010302003EB6BC /* LandingView.swift */,
-				79F7D6892C01067B003EB6BC /* ColorView.swift */,
 				79D520B12C0114B1000FFAB5 /* TodoList.swift */,
 				79D520BA2C011E22000FFAB5 /* SharedAlbum.swift */,
 				79D520BC2C012058000FFAB5 /* Activities.swift */,
+				79D520C22C023173000FFAB5 /* Message */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -107,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				79F7D6762C0101E7003EB6BC /* Assets.xcassets */,
+				79D520CB2C0233AC000FFAB5 /* MessageViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -181,11 +198,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				79F7D68A2C01067B003EB6BC /* ColorView.swift in Sources */,
+				79D520CC2C0233AC000FFAB5 /* MessageViewModel.swift in Sources */,
 				79F7D6862C010302003EB6BC /* LandingView.swift in Sources */,
 				79D520BD2C012058000FFAB5 /* Activities.swift in Sources */,
+				79D520CE2C0233D6000FFAB5 /* MessageView.swift in Sources */,
+				79D520CA2C023358000FFAB5 /* Message.swift in Sources */,
 				79F7D6732C0101E6003EB6BC /* BonDApp.swift in Sources */,
 				79D520B22C0114B1000FFAB5 /* TodoList.swift in Sources */,
+				79D520C62C0231DA000FFAB5 /* MessageBubbleView.swift in Sources */,
 				79D520BB2C011E22000FFAB5 /* SharedAlbum.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
