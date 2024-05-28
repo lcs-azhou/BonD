@@ -12,12 +12,12 @@ struct LandingView: View {
         TabView {
             TodoList()
                 .tabItem {
-                    Label("tab1", systemImage: "1.circle")
+                    Label("Todos", systemImage: "checklist")
                 }
 
             SharedAlbum()
                 .tabItem {
-                    Label("tab2", systemImage: "2.circle")
+                    Label("Album", systemImage: "person.2.crop.square.stack")
                 }
             
             ActivitiesView(newsItems: [NewsItem(title: "Title 1", imageName: "image1"),
@@ -25,12 +25,12 @@ struct LandingView: View {
                                        NewsItem(title: "Title 3", imageName: "image3"),
                                        NewsItem(title: "Title 4", imageName: "image4")])
                 .tabItem {
-                    Label("tab3", systemImage: "2.circle")
+                    Label("News", systemImage: "newspaper")
                 }
             
             MessageView()
                 .tabItem {
-                    Label("tab4", systemImage: "4.circle")
+                    Label("Message", systemImage: "ellipsis.message")
                 }
         }
     }

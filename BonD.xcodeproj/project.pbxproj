@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7994BC282C0608E600953E4D /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7994BC272C0608E600953E4D /* PopUpView.swift */; };
 		79D520B22C0114B1000FFAB5 /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520B12C0114B1000FFAB5 /* TodoList.swift */; };
 		79D520BB2C011E22000FFAB5 /* SharedAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520BA2C011E22000FFAB5 /* SharedAlbum.swift */; };
 		79D520BD2C012058000FFAB5 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520BC2C012058000FFAB5 /* Activities.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7994BC272C0608E600953E4D /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		79D520B12C0114B1000FFAB5 /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 		79D520BA2C011E22000FFAB5 /* SharedAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedAlbum.swift; sourceTree = "<group>"; };
 		79D520BC2C012058000FFAB5 /* Activities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 				79D520B12C0114B1000FFAB5 /* TodoList.swift */,
 				79D520BA2C011E22000FFAB5 /* SharedAlbum.swift */,
 				79D520BC2C012058000FFAB5 /* Activities.swift */,
+				7994BC272C0608E600953E4D /* PopUpView.swift */,
 				79D520C22C023173000FFAB5 /* Message */,
 			);
 			path = Views;
@@ -203,6 +206,7 @@
 				79D520BD2C012058000FFAB5 /* Activities.swift in Sources */,
 				79D520CE2C0233D6000FFAB5 /* MessageView.swift in Sources */,
 				79D520CA2C023358000FFAB5 /* Message.swift in Sources */,
+				7994BC282C0608E600953E4D /* PopUpView.swift in Sources */,
 				79F7D6732C0101E6003EB6BC /* BonDApp.swift in Sources */,
 				79D520B22C0114B1000FFAB5 /* TodoList.swift in Sources */,
 				79D520C62C0231DA000FFAB5 /* MessageBubbleView.swift in Sources */,

@@ -20,6 +20,7 @@ struct TodoList: View {
         TodoItem(title: "锻炼")
     ]
     @State private var newTodoTitle = ""
+    @State private var showAlert = false
 
     var body: some View {
         NavigationView {
@@ -60,6 +61,7 @@ struct TodoList: View {
             }
         }
     }
+ 
 
     private func toggleCompletion(for todo: TodoItem) {
         if let index = todos.firstIndex(where: { $0.id == todo.id }) {

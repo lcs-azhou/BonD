@@ -10,10 +10,8 @@ import Combine
 
 class MessagesViewModel: ObservableObject {
     @Published var messages: [Message] = [
-        Message(text: "Hello!", isFromCurrentUser: false),
-        Message(text: "Hi, how are you?", isFromCurrentUser: true),
-        Message(text: "I'm good, thanks!", isFromCurrentUser: false),
-        Message(text: "Great to hear!", isFromCurrentUser: true)
+        Message(text: "Hello,this is BonD.", isFromCurrentUser: false),
+        Message(text: "Hi,introduce me the app.", isFromCurrentUser: true)
     ]
     
     @Published var currentMessage: String = ""

@@ -59,7 +59,7 @@ struct NewsDetailView: View {
                     .frame(maxWidth: .infinity)
                 Text(newsItem.title)
                     .font(.title)
-                // Add more content here if needed
+    
             }
             .padding()
         }
