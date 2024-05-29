@@ -30,7 +30,7 @@ struct MessageView: View {
                     Text("Send")
                         .padding(.horizontal)
                         .padding(.vertical, 10)
-                        .background(Color.blue)
+                        .background(Color.green)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                 }
@@ -42,9 +42,7 @@ struct MessageView: View {
     }
 }
 
-struct MessageView_Previews: PreviewProvider {
-    static var previews: some View {
-        MessageView()
-    }
+#Preview{
+    MessageView()
 }
 

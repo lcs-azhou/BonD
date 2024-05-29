@@ -24,7 +24,7 @@ struct ActivitiesView: View {
                         .padding(.vertical, 8)
                 }
             }
-            .navigationTitle("News")
+            .navigationTitle("Activities")
         }
     }
 }
@@ -37,8 +37,9 @@ struct NewsListItemView: View {
             Image(newsItem.imageName)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
-                .frame(height: 150)
-                .clipped()
+                .frame(height: 165)
+                .cornerRadius(8.0)
+           
             Text(newsItem.title)
                 .font(.headline)
                 .foregroundColor(.primary)
@@ -55,7 +56,7 @@ struct NewsDetailView: View {
             VStack(alignment: .leading, spacing: 16) {
                 Image(newsItem.imageName)
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .aspectRatio(contentMode: .fill)
                     .frame(maxWidth: .infinity)
                 Text(newsItem.title)
                     .font(.title)
@@ -67,14 +68,7 @@ struct NewsDetailView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        let newsItems = [
-            NewsItem(title: "Title 1", imageName: "image1"),
-            NewsItem(title: "Title 2", imageName: "image2"),
-            NewsItem(title: "Title 3", imageName: "image3"),
-            NewsItem(title: "Title 4", imageName: "image4")
-        ]
-        return ActivitiesView(newsItems: newsItems)
-    }
+#Preview{
+    ActivitiesView(newsItems: [NewsItem(title: "Achieve physical and mental relaxation through gentle yoga poses.", imageName: "Image1"),
+                   NewsItem(title: "Add some bath salts or essential oils to the hot water to soothe your muscles and relax you at the same time.", imageName: "Image2")])
 }

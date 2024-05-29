@@ -16,7 +16,7 @@ struct MessageBubbleView: View {
                 Spacer()
                 Text(message.text)
                     .padding()
-                    .background(Color.blue)
+                    .background(Color.green)
                     .cornerRadius(15)
                     .foregroundColor(.white)
                     .frame(maxWidth: 250, alignment: .trailing)
@@ -40,23 +40,10 @@ struct MessageBubbleView: View {
                 Spacer()
             }
         }
-        .padding(.vertical, 5)
+        .padding(5)
     }
 }
 
-
-struct MessageBubbleView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            MessageBubbleView(message: Message(text: "Hello,thia is BonD.", isFromCurrentUser: false))
-                .previewLayout(.sizeThatFits)
-                .padding()
-                .previewDisplayName("Received Message")
-            
-            MessageBubbleView(message: Message(text: "Hi,introduce me the app.", isFromCurrentUser: true))
-                .previewLayout(.sizeThatFits)
-                .padding()
-                .previewDisplayName("Sent Message")
-        }
-    }
+#Preview{
+    MessageBubbleView(message: Message(text: "Hello,this is BonD.", isFromCurrentUser: false))
 }
