@@ -11,7 +11,7 @@ struct SharedAlbum: View {
     @StateObject private var viewModel = PhotoPickerViewModel()
     
     var body: some View {
-        VStack {
+        NavigationStack {
             List {
                 ForEach(Array(viewModel.selectedImages.chunked(into: 2)), id: \.self) { imageRow in
                     HStack(spacing: 16) {
@@ -24,7 +24,8 @@ struct SharedAlbum: View {
                         }
                     }
                 }
-            }
+            }.navigationTitle("Shared Album")
+                
 
             
             Button(action: {
