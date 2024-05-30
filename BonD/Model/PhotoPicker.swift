@@ -6,49 +6,57 @@
 //
 
 import SwiftUI
-import PhotosUI
 
-struct PhotoPicker: UIViewControllerRepresentable {
-    @Binding var selectedImages: [UIImage]
+struct TodoItemImage: Transferable, Equatable {
     
-    func makeUIViewController(context: Context) -> PHPickerViewController {
-        let picker = PHPickerViewController(configuration: pickerConfiguration())
-        picker.delegate = context.coordinator
-        return picker
-    }
+    // MARK: Stored properties
+    let image: Image
+    let data: Data
     
-    func updateUIViewController(_ uiViewController: PHPickerViewController, context: Context) {}
+    // MARK: Computed properties
     
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
-    
-    private func pickerConfiguration() -> PHPickerConfiguration {
-        var config = PHPickerConfiguration()
-        config.filter = .images
-        config.selectionLimit = 0
-        return config
-    }
-    
-    class Coordinator: NSObject, PHPickerViewControllerDelegate {
-        var parent: PhotoPicker
+    // Required to conform to Transferable protocol
+    // Is invoked when user picks (attempts to import) an image from photo library into this app
+    static var transferRepresentation: some TransferRepresentation {
         
-        init(_ parent: PhotoPicker) {
-            self.parent = parent
-        }
-        
-        func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-            picker.dismiss(animated: true)
+        return DataRepresentation(importedContentType: .image) { importedImageData in
             
-            for result in results {
-                result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
-                    if let image = image as? UIImage {
-                        DispatchQueue.main.async {
-                            self?.parent.selectedImages.append(image)
-                        }
-                    }
-                }
+            // Attempt to create an instance of TodoItemImage from the imported data
+            guard let image = TodoItemImage(rawImageData: importedImageData) else {
+                // If the important did not work, throw an error
+                throw TransferError.importFailed
             }
+            
+            // The import worked, so return the imported image
+            return image
         }
     }
+}
+
+// Extend the structure to add new capabilities
+extension TodoItemImage {
+    
+    // MARK: Initializer(s)
+    
+    // An initializer to create an instance of TodoItemImage from the image data
+    // returned by the PhotosPicker
+    init?(rawImageData: Data) {
+        
+        // Create an instance of UIImage from the raw image data provided
+        guard let uiImage = UIImage(data: rawImageData) else {
+            return nil
+        }
+        
+        // Create a SwiftUI Image structure from the UIImage instance
+        let image = Image(uiImage: uiImage)
+        
+        // Initialize and return TodoImage instance
+        self.init(image: image, data: rawImageData)
+    }
+    
+}
+
+// List the possible errors that can occur when importing an image
+enum TransferError: Error {
+    case importFailed
 }

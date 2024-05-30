@@ -7,43 +7,11 @@
 
 import SwiftUI
 
-struct SharedAlbum: View {
-    @StateObject private var viewModel = PhotoPickerViewModel()
-    
+struct SharedAlbum: View{
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(0..<viewModel.selectedImages.count, id: \.self) { index in
-                    let image = viewModel.selectedImages[index]
-                    Image(uiImage: image)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .cornerRadius(10)
-                        .frame(height: 100)
-                }
-            }
-        }.navigationTitle("Shared Album")
-            .navigationBarItems(
-                trailing: viewModel.selectedImages.isEmpty ?
-                AnyView(
-                    Button(action: {
-                        viewModel.isPickerPresented.toggle()
-                    }) {
-                        Text("Add Photos")
-                            .foregroundColor(.white)
-                            .padding()
-                            .background(Color.green)
-                            .cornerRadius(10)
-                    }
-                ) :
-                    AnyView(
-                        EditButton()
-                            .foregroundColor(.green)
-                    )
-            )
+        Text("Hello World")
     }
 }
-
 
 #Preview {
     SharedAlbum()
