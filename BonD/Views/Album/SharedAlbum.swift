@@ -13,47 +13,36 @@ struct SharedAlbum: View {
     var body: some View {
         NavigationStack {
             List {
-                ForEach(Array(viewModel.selectedImages.chunked(into: 2)), id: \.self) { imageRow in
-                    HStack(spacing: 16) {
-                        ForEach(imageRow, id: \.self) { image in
-                            Image(uiImage: image)
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .cornerRadius(10)
-                                .frame(height: 100)
-                        }
-                    }
+                ForEach(0..<viewModel.selectedImages.count, id: \.self) { index in
+                                    let image = viewModel.selectedImages[index]
+                                    Image(uiImage: image)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .cornerRadius(10)
+                                        .frame(height: 100)
+                                }
                 }
             }.navigationTitle("Shared Album")
-                
-
-            
-            Button(action: {
-                viewModel.isPickerPresented.toggle()
-            }) {
-                Text("Add Photos")
-                    .foregroundColor(.white)
+            .navigationBarItems(
+                trailing: viewModel.selectedImages.isEmpty ?
+                    Button(action: {
+                        viewModel.isPickerPresented.toggle()
+                    }) {
+                        Text("Add Photos")
+                            .foregroundColor(.white)
+                            .padding()
+                            .background(Color.green)
+                            .cornerRadius(10)
+                    }
                     .padding()
-                    .background(Color.green)
-                    .cornerRadius(10)
-            }
-            .padding()
-            .sheet(isPresented: $viewModel.isPickerPresented) {
-                PhotoPickerView(viewModel: viewModel)
-                    .presentationDetents([.medium, .fraction(0.6)])
-            }
+                    .sheet(isPresented: $viewModel.isPickerPresented) {
+                        PhotoPickerView(viewModel: viewModel)
+                            .presentationDetents([.medium, .fraction(0.6)])
+                    } as! AnyView :
+                    AnyView(EditButton().foregroundColor(.green))
+            )
         }
     }
-}
-
-extension Array {
-    func chunked(into size: Int) -> [[Element]] {
-        return stride(from: 0, to: self.count, by: size).map { startIndex in
-            let endIndex = index(startIndex, offsetBy: size, limitedBy: self.count) ?? self.count
-            return Array(self[startIndex..<endIndex])
-        }
-    }
-}
 
 
 #Preview {
