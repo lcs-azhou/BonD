@@ -14,17 +14,18 @@ struct SharedAlbum: View {
         NavigationStack {
             List {
                 ForEach(0..<viewModel.selectedImages.count, id: \.self) { index in
-                                    let image = viewModel.selectedImages[index]
-                                    Image(uiImage: image)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .cornerRadius(10)
-                                        .frame(height: 100)
-                                }
+                    let image = viewModel.selectedImages[index]
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .cornerRadius(10)
+                        .frame(height: 100)
                 }
-            }.navigationTitle("Shared Album")
+            }
+        }.navigationTitle("Shared Album")
             .navigationBarItems(
                 trailing: viewModel.selectedImages.isEmpty ?
+                AnyView(
                     Button(action: {
                         viewModel.isPickerPresented.toggle()
                     }) {
@@ -34,15 +35,14 @@ struct SharedAlbum: View {
                             .background(Color.green)
                             .cornerRadius(10)
                     }
-                    .padding()
-                    .sheet(isPresented: $viewModel.isPickerPresented) {
-                        PhotoPickerView(viewModel: viewModel)
-                            .presentationDetents([.medium, .fraction(0.6)])
-                    } as! AnyView :
-                    AnyView(EditButton().foregroundColor(.green))
+                ) :
+                    AnyView(
+                        EditButton()
+                            .foregroundColor(.green)
+                    )
             )
-        }
     }
+}
 
 
 #Preview {
