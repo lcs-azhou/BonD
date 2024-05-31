@@ -38,6 +38,18 @@ struct TodoList: View {
                     .onTapGesture {
                         toggleCompletion(for: todo)
                     }
+                    .contextMenu(menuItems: {
+                        Button {
+                            // viewModel.share(todo)
+                            print("\(todo.title) has been shared")
+                        } label: {
+                            Label {
+                                Text("Share")
+                            } icon: {
+                                Image(systemName: "square.and.arrow.up")
+                            }
+                        }
+                    })
                 }
                 .onDelete(perform: deleteTodo)
             }
