@@ -6,10 +6,28 @@
 //
 
 import SwiftUI
+import PhotosUI
 
-struct SharedAlbum: View{
+struct SharedAlbum: View {
+    @StateObject private var viewModel = SharedAlbumViewModel()
+    
     var body: some View {
-        Text("Hello World")
+        NavigationView {
+            VStack {
+                PhotosPicker("Select Photo", selection: $viewModel.selectionResult, matching: .images)
+                
+                List {
+                    ForEach(viewModel.albumImages, id: \.id) { item in
+                        Image(uiImage: item.image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 100)
+                    }
+                }
+                .listStyle(.automatic)
+            }
+            .navigationTitle("Shared Album")
+        }
     }
 }
 

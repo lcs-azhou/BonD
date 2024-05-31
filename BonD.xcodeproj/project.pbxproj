@@ -20,7 +20,6 @@
 		79F7D67A2C0101E7003EB6BC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79F7D6792C0101E7003EB6BC /* Preview Assets.xcassets */; };
 		79F7D6862C010302003EB6BC /* LandingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F7D6852C010302003EB6BC /* LandingView.swift */; };
 		79FC8B482C076C4A0061CAC3 /* PhotoPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC8B472C076C4A0061CAC3 /* PhotoPickerViewModel.swift */; };
-		79FC8B4A2C076C950061CAC3 /* PhotoPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC8B492C076C950061CAC3 /* PhotoPickerView.swift */; };
 		79FC8B4C2C076CB60061CAC3 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79FC8B4B2C076CB60061CAC3 /* PhotoPicker.swift */; };
 /* End PBXBuildFile section */
 
@@ -39,7 +38,6 @@
 		79F7D6792C0101E7003EB6BC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		79F7D6852C010302003EB6BC /* LandingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingView.swift; sourceTree = "<group>"; };
 		79FC8B472C076C4A0061CAC3 /* PhotoPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoPickerViewModel.swift; path = BonD/ViewModel/PhotoPickerViewModel.swift; sourceTree = SOURCE_ROOT; };
-		79FC8B492C076C950061CAC3 /* PhotoPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerView.swift; sourceTree = "<group>"; };
 		79FC8B4B2C076CB60061CAC3 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,7 +141,6 @@
 			isa = PBXGroup;
 			children = (
 				79D520BA2C011E22000FFAB5 /* SharedAlbum.swift */,
-				79FC8B492C076C950061CAC3 /* PhotoPickerView.swift */,
 			);
 			path = Album;
 			sourceTree = "<group>";
@@ -225,7 +222,6 @@
 				79D520CE2C0233D6000FFAB5 /* MessageView.swift in Sources */,
 				79D520CA2C023358000FFAB5 /* Message.swift in Sources */,
 				7994BC282C0608E600953E4D /* PopUpView.swift in Sources */,
-				79FC8B4A2C076C950061CAC3 /* PhotoPickerView.swift in Sources */,
 				79F7D6732C0101E6003EB6BC /* BonDApp.swift in Sources */,
 				79D520B22C0114B1000FFAB5 /* TodoList.swift in Sources */,
 				79FC8B4C2C076CB60061CAC3 /* PhotoPicker.swift in Sources */,
