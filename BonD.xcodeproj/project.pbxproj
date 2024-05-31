@@ -15,6 +15,10 @@
 		79D520CA2C023358000FFAB5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520C92C023358000FFAB5 /* Message.swift */; };
 		79D520CC2C0233AC000FFAB5 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520CB2C0233AC000FFAB5 /* MessageViewModel.swift */; };
 		79D520CE2C0233D6000FFAB5 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520CD2C0233D6000FFAB5 /* MessageView.swift */; };
+		79DF76BD2C0A527F00A5447B /* IntroView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF76BC2C0A527F00A5447B /* IntroView.swift */; };
+		79DF76C22C0A535400A5447B /* IntroItem1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF76C12C0A535400A5447B /* IntroItem1.swift */; };
+		79DF76C42C0A5AC600A5447B /* IntroItem2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF76C32C0A5AC600A5447B /* IntroItem2.swift */; };
+		79DF76C62C0A5C3A00A5447B /* IntroItem3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79DF76C52C0A5C3A00A5447B /* IntroItem3.swift */; };
 		79F7D6732C0101E6003EB6BC /* BonDApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F7D6722C0101E6003EB6BC /* BonDApp.swift */; };
 		79F7D6772C0101E7003EB6BC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79F7D6762C0101E7003EB6BC /* Assets.xcassets */; };
 		79F7D67A2C0101E7003EB6BC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79F7D6792C0101E7003EB6BC /* Preview Assets.xcassets */; };
@@ -32,6 +36,10 @@
 		79D520C92C023358000FFAB5 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		79D520CB2C0233AC000FFAB5 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		79D520CD2C0233D6000FFAB5 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		79DF76BC2C0A527F00A5447B /* IntroView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroView.swift; sourceTree = "<group>"; };
+		79DF76C12C0A535400A5447B /* IntroItem1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroItem1.swift; sourceTree = "<group>"; };
+		79DF76C32C0A5AC600A5447B /* IntroItem2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroItem2.swift; sourceTree = "<group>"; };
+		79DF76C52C0A5C3A00A5447B /* IntroItem3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroItem3.swift; sourceTree = "<group>"; };
 		79F7D66F2C0101E6003EB6BC /* BonD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BonD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		79F7D6722C0101E6003EB6BC /* BonDApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonDApp.swift; sourceTree = "<group>"; };
 		79F7D6762C0101E7003EB6BC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,6 +67,16 @@
 				79D520CD2C0233D6000FFAB5 /* MessageView.swift */,
 			);
 			path = Message;
+			sourceTree = "<group>";
+		};
+		79DF76C02C0A531F00A5447B /* IntroItemView */ = {
+			isa = PBXGroup;
+			children = (
+				79DF76C12C0A535400A5447B /* IntroItem1.swift */,
+				79DF76C32C0A5AC600A5447B /* IntroItem2.swift */,
+				79DF76C52C0A5C3A00A5447B /* IntroItem3.swift */,
+			);
+			path = IntroItemView;
 			sourceTree = "<group>";
 		};
 		79F7D6662C0101E6003EB6BC = {
@@ -117,12 +135,14 @@
 		79F7D6832C0102A6003EB6BC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				79DF76BC2C0A527F00A5447B /* IntroView.swift */,
 				79F7D6852C010302003EB6BC /* LandingView.swift */,
 				79D520B12C0114B1000FFAB5 /* TodoList.swift */,
 				79FC8B4D2C0773570061CAC3 /* Album */,
 				79D520BC2C012058000FFAB5 /* Activities.swift */,
 				7994BC272C0608E600953E4D /* PopUpView.swift */,
 				79D520C22C023173000FFAB5 /* Message */,
+				79DF76C02C0A531F00A5447B /* IntroItemView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -216,11 +236,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				79D520CC2C0233AC000FFAB5 /* MessageViewModel.swift in Sources */,
+				79DF76C22C0A535400A5447B /* IntroItem1.swift in Sources */,
 				79F7D6862C010302003EB6BC /* LandingView.swift in Sources */,
+				79DF76C42C0A5AC600A5447B /* IntroItem2.swift in Sources */,
 				79FC8B482C076C4A0061CAC3 /* PhotoPickerViewModel.swift in Sources */,
 				79D520BD2C012058000FFAB5 /* Activities.swift in Sources */,
+				79DF76BD2C0A527F00A5447B /* IntroView.swift in Sources */,
 				79D520CE2C0233D6000FFAB5 /* MessageView.swift in Sources */,
 				79D520CA2C023358000FFAB5 /* Message.swift in Sources */,
+				79DF76C62C0A5C3A00A5447B /* IntroItem3.swift in Sources */,
 				7994BC282C0608E600953E4D /* PopUpView.swift in Sources */,
 				79F7D6732C0101E6003EB6BC /* BonDApp.swift in Sources */,
 				79D520B22C0114B1000FFAB5 /* TodoList.swift in Sources */,

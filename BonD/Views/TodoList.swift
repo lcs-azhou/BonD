@@ -21,7 +21,7 @@ struct TodoList: View {
     ]
     @State private var newTodoTitle = ""
     @State private var showAlert = false
-
+    
     var body: some View {
         NavigationView {
             List {
@@ -49,7 +49,13 @@ struct TodoList: View {
                                 Image(systemName: "square.and.arrow.up")
                             }
                         }
-                    })
+                    }).alert(isPresented: $showAlert){
+                        Alert(title: Text("Shared"), message: Text("Do you want to share your todolist with your group members?"), primaryButton: .default(Text("Yes"), action: {
+                            print("shared")
+                        }), secondaryButton: .cancel(Text("Cancel"), action: {
+                            print("canceled")
+                        }))
+                    }
                 }
                 .onDelete(perform: deleteTodo)
             }
