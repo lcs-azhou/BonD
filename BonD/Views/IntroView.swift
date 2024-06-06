@@ -17,6 +17,8 @@ struct IntroView: View {
     // Report on the swipe direction, once a swipe occurs
     @State var swipeDirection: String = ""
     
+    @Binding var next: Bool
+    
     // MARK: Computed properties
     var body: some View {
         
@@ -33,8 +35,22 @@ struct IntroView: View {
                 IntroItem2()
                     .tag(1)
                 
-                IntroItem3()
-                    .tag(2)
+                ZStack {
+                    IntroItem3()
+                        .tag(2)
+                    VStack {
+                        Spacer()
+                            .frame(height:500)
+                        Text("Next")
+                            .font(
+                                .custom("PingFangSC-Thin", size: 45)
+                            )
+                            .foregroundStyle(.green.opacity(0.7))
+                            .onTapGesture {
+                                next = true
+                            }
+                    }
+                }
 
             }
             // Present the tab view
@@ -46,5 +62,5 @@ struct IntroView: View {
     }
 }
 #Preview {
-    IntroView()
+    IntroView(next: Binding.constant(false))
 }

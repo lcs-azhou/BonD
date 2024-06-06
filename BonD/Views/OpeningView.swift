@@ -9,12 +9,13 @@ import SwiftUI
 
 struct OpeningView: View {
     @State private var haschosenstarted = false
+    @State var haschosennext = false
     
     var body: some View {
         if haschosenstarted == false {
             StartView(getstarted: $haschosenstarted)
         } else {
-            IntroView()
+            TransitionView()
         }
     }
 }
