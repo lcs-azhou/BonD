@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TabViewBasedOnStaticViews: View {
+struct IntroView: View {
     
     // MARK: Stored properties
     
@@ -46,5 +46,5 @@ struct TabViewBasedOnStaticViews: View {
     }
 }
 #Preview {
-    TabViewBasedOnStaticViews()
+    IntroView()
 }
