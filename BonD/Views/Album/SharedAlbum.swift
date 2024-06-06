@@ -14,7 +14,15 @@ struct SharedAlbum: View {
     var body: some View {
         NavigationView {
             VStack {
-                PhotosPicker("Select Photo", selection: $viewModel.selectionResult, matching: .images)
+                ZStack {
+                    Rectangle()
+                        .frame(height:50)
+                        .cornerRadius(16)
+                        .padding()
+                        .foregroundColor(.green)
+                    PhotosPicker("Select Photo", selection: $viewModel.selectionResult, matching: .images)
+                        .foregroundColor(.white)
+                }
                 
                 List {
                     ForEach(viewModel.albumImages, id: \.id) { item in
