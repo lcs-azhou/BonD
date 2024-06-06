@@ -59,6 +59,10 @@ struct TodoList: View {
                 }
                 .onDelete(perform: deleteTodo)
             }
+            .listStyle(.plain)
+            .background{
+                Color(.green.opacity(0.3))
+            }
             .navigationTitle("TodoList")
             .navigationBarItems(
                 trailing: EditButton()

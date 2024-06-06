@@ -37,8 +37,13 @@ struct MessageView: View {
             }
             .padding()
         }
-        .background(Color.white)
-        .padding()
+        .background{
+        Image("Image5")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .ignoresSafeArea()
+                .opacity(0.7)
+        }
     }
 }
 
