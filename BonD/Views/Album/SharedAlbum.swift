@@ -25,6 +25,9 @@ struct SharedAlbum: View {
                     }
                 }
                 .listStyle(.automatic)
+            }.background{
+                Color(.green.opacity(0.5))
+                    .ignoresSafeArea()
             }
             .navigationTitle("Shared Album")
         }
