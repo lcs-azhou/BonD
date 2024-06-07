@@ -41,17 +41,29 @@ struct IntroView: View {
                     VStack {
                         Spacer()
                             .frame(height:500)
-                        Text("Next")
-                            .font(
-                                .custom("PingFangSC-Thin", size: 45)
-                            )
-                            .foregroundStyle(.green.opacity(0.7))
-                            .onTapGesture {
-                                next = true
+                        ZStack {
+                            Rectangle()
+                                .cornerRadius(10)
+                                .foregroundColor(.white)
+                                .frame(height:50)
+                                .padding(125)
+                            Text("Next")
+                                .font(
+                                    .custom("PingFangSC-Thin", size: 45)
+                                )
+                                .foregroundStyle(.green.opacity(0.7))
+                                .onTapGesture {
+                                    next = true
                             }
+                        }
                     }
                 }
 
+            }
+            .background{
+                Color(.green)
+                    .opacity(0.45)
+                    .ignoresSafeArea()
             }
             // Present the tab view
             .tabViewStyle(.page)

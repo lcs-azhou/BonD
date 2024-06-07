@@ -9,12 +9,14 @@ import SwiftUI
 
 struct LandingView: View {
     var body: some View {
+        @StateObject var viewModel = TimerViewModel()
+        
         TabView {
             TodoList()
                 .tabItem {
                     Label("Todos", systemImage: "checklist")
                 }
-
+            
             SharedAlbum()
                 .tabItem {
                     Label("Album", systemImage: "person.2.crop.square.stack")
@@ -29,7 +31,10 @@ struct LandingView: View {
                 .tabItem {
                     Label("Message", systemImage: "ellipsis.message")
                 }
-        }
+        }.accentColor(.green)
+            .overlay(
+                FloatingTimerWindow(viewModel: viewModel)
+            )
     }
 }
 

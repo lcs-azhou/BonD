@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		7994BC282C0608E600953E4D /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7994BC272C0608E600953E4D /* PopUpView.swift */; };
 		79AD95202C127BFE00328C5C /* ActivitiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AD951F2C127BFE00328C5C /* ActivitiesViewModel.swift */; };
+		79AD95222C127F9B00328C5C /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AD95212C127F9B00328C5C /* TimerView.swift */; };
+		79AD95242C127FB800328C5C /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AD95232C127FB800328C5C /* TimerViewModel.swift */; };
+		79AD95262C1284B700328C5C /* TimerWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AD95252C1284B700328C5C /* TimerWindowView.swift */; };
 		79D520B22C0114B1000FFAB5 /* TodoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520B12C0114B1000FFAB5 /* TodoList.swift */; };
 		79D520BB2C011E22000FFAB5 /* SharedAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520BA2C011E22000FFAB5 /* SharedAlbum.swift */; };
 		79D520BD2C012058000FFAB5 /* Activities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D520BC2C012058000FFAB5 /* Activities.swift */; };
@@ -34,6 +37,9 @@
 /* Begin PBXFileReference section */
 		7994BC272C0608E600953E4D /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		79AD951F2C127BFE00328C5C /* ActivitiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewModel.swift; sourceTree = "<group>"; };
+		79AD95212C127F9B00328C5C /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		79AD95232C127FB800328C5C /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
+		79AD95252C1284B700328C5C /* TimerWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerWindowView.swift; sourceTree = "<group>"; };
 		79D520B12C0114B1000FFAB5 /* TodoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoList.swift; sourceTree = "<group>"; };
 		79D520BA2C011E22000FFAB5 /* SharedAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedAlbum.swift; sourceTree = "<group>"; };
 		79D520BC2C012058000FFAB5 /* Activities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activities.swift; sourceTree = "<group>"; };
@@ -149,9 +155,11 @@
 				79F7B9C82C12149800641B68 /* TransitionView.swift */,
 				79F7D6852C010302003EB6BC /* LandingView.swift */,
 				79D520B12C0114B1000FFAB5 /* TodoList.swift */,
-				79FC8B4D2C0773570061CAC3 /* Album */,
 				79D520BC2C012058000FFAB5 /* Activities.swift */,
 				7994BC272C0608E600953E4D /* PopUpView.swift */,
+				79AD95212C127F9B00328C5C /* TimerView.swift */,
+				79AD95252C1284B700328C5C /* TimerWindowView.swift */,
+				79FC8B4D2C0773570061CAC3 /* Album */,
 				79D520C22C023173000FFAB5 /* Message */,
 				79DF76C02C0A531F00A5447B /* IntroItemView */,
 			);
@@ -163,6 +171,7 @@
 			children = (
 				79F7D6762C0101E7003EB6BC /* Assets.xcassets */,
 				79D520CB2C0233AC000FFAB5 /* MessageViewModel.swift */,
+				79AD95232C127FB800328C5C /* TimerViewModel.swift */,
 				79FC8B472C076C4A0061CAC3 /* PhotoPickerViewModel.swift */,
 				79AD951F2C127BFE00328C5C /* ActivitiesViewModel.swift */,
 			);
@@ -247,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79AD95222C127F9B00328C5C /* TimerView.swift in Sources */,
 				79F7B9C52C120D3000641B68 /* StartView.swift in Sources */,
 				79D520CC2C0233AC000FFAB5 /* MessageViewModel.swift in Sources */,
 				79DF76C22C0A535400A5447B /* IntroItem1.swift in Sources */,
@@ -254,12 +264,14 @@
 				79DF76C42C0A5AC600A5447B /* IntroItem2.swift in Sources */,
 				79FC8B482C076C4A0061CAC3 /* PhotoPickerViewModel.swift in Sources */,
 				79D520BD2C012058000FFAB5 /* Activities.swift in Sources */,
+				79AD95242C127FB800328C5C /* TimerViewModel.swift in Sources */,
 				79DF76BD2C0A527F00A5447B /* IntroView.swift in Sources */,
 				79D520CE2C0233D6000FFAB5 /* MessageView.swift in Sources */,
 				79AD95202C127BFE00328C5C /* ActivitiesViewModel.swift in Sources */,
 				79D520CA2C023358000FFAB5 /* Message.swift in Sources */,
 				79DF76C62C0A5C3A00A5447B /* IntroItem3.swift in Sources */,
 				7994BC282C0608E600953E4D /* PopUpView.swift in Sources */,
+				79AD95262C1284B700328C5C /* TimerWindowView.swift in Sources */,
 				79F7D6732C0101E6003EB6BC /* BonDApp.swift in Sources */,
 				79D520B22C0114B1000FFAB5 /* TodoList.swift in Sources */,
 				79FC8B4C2C076CB60061CAC3 /* PhotoPicker.swift in Sources */,

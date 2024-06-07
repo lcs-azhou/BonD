@@ -6,13 +6,45 @@
 //
 
 import SwiftUI
+import Combine
 
-struct TimerViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+class TimerViewModel: ObservableObject {
+    @Published var timeRemaining: Int
+    @Published var timerRunning: Bool = false
+    private var timer: AnyCancellable?
+    
+    init(timeRemaining: Int = 1500) {
+        self.timeRemaining = timeRemaining
     }
-}
-
-#Preview {
-    TimerViewModel()
+    
+    func startTimer() {
+        timerRunning = true
+        timer = Timer.publish(every: 1, on: .main, in: .common)
+            .autoconnect()
+            .sink { _ in
+                if self.timeRemaining > 0 && self.timerRunning {
+                    self.timeRemaining -= 1
+                } else {
+                    self.timerRunning = false
+                    self.timer?.cancel()
+                }
+            }
+    }
+    
+    func pauseTimer() {
+        timerRunning = false
+        timer?.cancel()
+    }
+    
+    func resetTimer() {
+        timerRunning = false
+        timer?.cancel()
+        timeRemaining = 1500
+    }
+    
+    func formatTime(_ totalSeconds: Int) -> String {
+        let minutes = totalSeconds / 60
+        let seconds = totalSeconds % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
 }

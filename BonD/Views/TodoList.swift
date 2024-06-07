@@ -21,6 +21,8 @@ struct TodoList: View {
     ]
     @State private var newTodoTitle = ""
     @State private var showAlert = false
+    @State private var selectedTodo: TodoItem? = nil
+    @State private var showTimerView = false
     
     var body: some View {
         NavigationView {
@@ -49,12 +51,34 @@ struct TodoList: View {
                                 Image(systemName: "square.and.arrow.up")
                             }
                         }
+                        Button {
+                            selectedTodo = todo
+                            showAlert = true
+                        } label: {
+                            Label {
+                                Text("Start Timer")
+                            } icon: {
+                                Image(systemName: "timer")
+                            }
+                        }
                     }).alert(isPresented: $showAlert){
-                        Alert(title: Text("Shared"), message: Text("Do you want to share your todolist with your group members?"), primaryButton: .default(Text("Yes"), action: {
-                            print("shared")
-                        }), secondaryButton: .cancel(Text("Cancel"), action: {
-                            print("canceled")
-                        }))
+                        Alert(
+                            title: Text("Options for \(selectedTodo?.title ?? "")"),
+                            message: Text("Choose an action to perform"),
+                            primaryButton: .default(Text("Share"), action: {
+                                if let selectedTodo = selectedTodo {
+                                    // share selectedTodo
+                                    print("\(selectedTodo.title) has been shared")
+                                }
+                            }),
+                            secondaryButton: .default(Text("Start Timer"), action: {
+                                showTimerView = true
+                            })
+                        )
+                    }.sheet(isPresented: $showTimerView) {
+                        if let selectedTodo = selectedTodo {
+                            TimerView(viewModel: TimerViewModel(), todo: selectedTodo)
+                        }
                     }
                 }
                 .onDelete(perform: deleteTodo)
@@ -83,18 +107,18 @@ struct TodoList: View {
             }
         }
     }
- 
-
+    
+    
     private func toggleCompletion(for todo: TodoItem) {
         if let index = todos.firstIndex(where: { $0.id == todo.id }) {
             todos[index].isCompleted.toggle()
         }
     }
-
+    
     private func deleteTodo(at offsets: IndexSet) {
         todos.remove(atOffsets: offsets)
     }
-
+    
     private func addTodo() {
         guard !newTodoTitle.isEmpty else { return }
         todos.append(TodoItem(title: newTodoTitle))
