@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct IntroItem2: View {
+
     var body: some View {
         TabView {
             VStack {
