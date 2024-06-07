@@ -43,6 +43,7 @@ struct FloatingTimerWindow: View {
                 
                 
                 position = CGSize(width: constrainedX, height: constrainedY)
+                dragOffset = .zero
             }
         )
     }
