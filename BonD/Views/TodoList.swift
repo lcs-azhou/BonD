@@ -6,19 +6,22 @@
 //
 
 import SwiftUI
+import Supabase
 
-struct TodoItem: Identifiable {
+struct TodoItem: Identifiable, Codable {
     var id = UUID()
     var title: String
-    var isCompleted: Bool = false
+    var isCompleted: Bool
+    
+    init(id: UUID = UUID(), title: String, isCompleted: Bool = false) {
+        self.id = id
+        self.title = title
+        self.isCompleted = isCompleted
+    }
 }
 
 struct TodoList: View {
-    @State private var todos: [TodoItem] = [
-        TodoItem(title: "购物"),
-        TodoItem(title: "学习"),
-        TodoItem(title: "锻炼")
-    ]
+    @State private var todos: [TodoItem] = []
     @State private var newTodoTitle = ""
     @State private var showAlert = false
     @State private var selectedTodo: TodoItem? = nil
@@ -109,22 +112,86 @@ struct TodoList: View {
     }
     
     
+    private func loadTodos() {
+        Task {
+            do {
+                let response = try await supabaseClient
+                    .from("TodoList")
+                    .select()
+                    .execute()
+                
+                if let todos = response.value as? [TodoItem] {
+                    self.todos = todos
+                } else {
+                    print("Failed to decode todos")
+                }
+            } catch {
+                print("Error loading todos: \(error)")
+            }
+        }
+    }
+    
     private func toggleCompletion(for todo: TodoItem) {
         if let index = todos.firstIndex(where: { $0.id == todo.id }) {
             todos[index].isCompleted.toggle()
+            updateTodoStatus(todo: todos[index])
+        }
+    }
+
+    
+    private func updateTodoStatus(todo: TodoItem) {
+        Task {
+            do {
+                try await supabaseClient
+                    .from("TodoList")
+                    .update(["isCompleted": todo.isCompleted])
+                    .eq("id", value: todo.id)
+                    .execute()
+            } catch {
+                print("Error updating todo: \(error)")
+            }
         }
     }
     
     private func deleteTodo(at offsets: IndexSet) {
+        offsets.map { todos[$0] }.forEach { todo in
+            Task {
+                do {
+                    try await supabaseClient
+                        .from("TodoList")
+                        .delete()
+                        .eq("id", value: todo.id)
+                        .execute()
+                } catch {
+                    print("Error deleting todo: \(error)")
+                }
+            }
+        }
         todos.remove(atOffsets: offsets)
     }
     
     private func addTodo() {
         guard !newTodoTitle.isEmpty else { return }
-        todos.append(TodoItem(title: newTodoTitle))
+        let newTodo = TodoItem(title: newTodoTitle)
+        todos.append(newTodo)
         newTodoTitle = ""
+        saveNewTodoToSupabase(newTodo)
+    }
+    
+    private func saveNewTodoToSupabase(_ todo: TodoItem) {
+        Task {
+            do {
+                try await supabaseClient
+                    .from("TodoList")
+                    .insert(todo)
+                    .execute()
+            } catch {
+                print("Error saving new todo: \(error)")
+            }
+        }
     }
 }
+
 
 #Preview {
     TodoList()

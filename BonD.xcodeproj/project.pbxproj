@@ -14,6 +14,7 @@
 		794DEE662C138C9C00B3B089 /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = 794DEE652C138C9C00B3B089 /* Realtime */; };
 		794DEE682C138C9C00B3B089 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 794DEE672C138C9C00B3B089 /* Storage */; };
 		794DEE6A2C138C9C00B3B089 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 794DEE692C138C9C00B3B089 /* Supabase */; };
+		794DEE6C2C138EAB00B3B089 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DEE6B2C138EAB00B3B089 /* LoginView.swift */; };
 		7994BC282C0608E600953E4D /* PopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7994BC272C0608E600953E4D /* PopUpView.swift */; };
 		79AD95202C127BFE00328C5C /* ActivitiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AD951F2C127BFE00328C5C /* ActivitiesViewModel.swift */; };
 		79AD95222C127F9B00328C5C /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79AD95212C127F9B00328C5C /* TimerView.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		794DEE3C2C13890800B3B089 /* SupabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseHelper.swift; sourceTree = "<group>"; };
+		794DEE6B2C138EAB00B3B089 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7994BC272C0608E600953E4D /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
 		79AD951F2C127BFE00328C5C /* ActivitiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesViewModel.swift; sourceTree = "<group>"; };
 		79AD95212C127F9B00328C5C /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		79F7D6832C0102A6003EB6BC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				794DEE6B2C138EAB00B3B089 /* LoginView.swift */,
 				79F7B9C62C12118200641B68 /* OpeningView.swift */,
 				79F7B9C42C120D3000641B68 /* StartView.swift */,
 				79F7B9C82C12149800641B68 /* TransitionView.swift */,
@@ -295,6 +298,7 @@
 				79DF76BD2C0A527F00A5447B /* IntroView.swift in Sources */,
 				79D520CE2C0233D6000FFAB5 /* MessageView.swift in Sources */,
 				79AD95202C127BFE00328C5C /* ActivitiesViewModel.swift in Sources */,
+				794DEE6C2C138EAB00B3B089 /* LoginView.swift in Sources */,
 				79D520CA2C023358000FFAB5 /* Message.swift in Sources */,
 				79DF76C62C0A5C3A00A5447B /* IntroItem3.swift in Sources */,
 				7994BC282C0608E600953E4D /* PopUpView.swift in Sources */,
