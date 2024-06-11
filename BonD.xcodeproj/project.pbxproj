@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		790F981C2C18ECE600341502 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790F981B2C18ECE600341502 /* NewsItem.swift */; };
 		794DEE3D2C13890800B3B089 /* SupabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DEE3C2C13890800B3B089 /* SupabaseHelper.swift */; };
 		794DEE602C138C9C00B3B089 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 794DEE5F2C138C9C00B3B089 /* Auth */; };
 		794DEE622C138C9C00B3B089 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 794DEE612C138C9C00B3B089 /* Functions */; };
@@ -43,6 +44,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		790F981B2C18ECE600341502 /* NewsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
 		794DEE3C2C13890800B3B089 /* SupabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseHelper.swift; sourceTree = "<group>"; };
 		794DEE6B2C138EAB00B3B089 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7994BC272C0608E600953E4D /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			children = (
 				79D520C92C023358000FFAB5 /* Message.swift */,
 				79FC8B4B2C076CB60061CAC3 /* PhotoPicker.swift */,
+				790F981B2C18ECE600341502 /* NewsItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				79AD95222C127F9B00328C5C /* TimerView.swift in Sources */,
 				79F7B9C52C120D3000641B68 /* StartView.swift in Sources */,
 				79D520CC2C0233AC000FFAB5 /* MessageViewModel.swift in Sources */,
+				790F981C2C18ECE600341502 /* NewsItem.swift in Sources */,
 				794DEE3D2C13890800B3B089 /* SupabaseHelper.swift in Sources */,
 				79DF76C22C0A535400A5447B /* IntroItem1.swift in Sources */,
 				79F7D6862C010302003EB6BC /* LandingView.swift in Sources */,

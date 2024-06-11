@@ -8,24 +8,33 @@
 import SwiftUI
 import PhotosUI
 
-struct NewsItem: Identifiable {
-    var id = UUID()
-    var title: String
-    var imageData: Data?
-}
-
-
 struct ActivitiesView: View {
-    @StateObject private var viewModel = ActivitiesViewModel(newsItems: [NewsItem(title: "Achieve physical and mental relaxation through gentle yoga poses.", imageData: nil),
-                                                                         NewsItem(title: "Add some bath salts or essential oils to the hot water to soothe your muscles and relax you at the same time.", imageData: nil)])
+    @StateObject private var viewModel = ActivitiesViewModel()
     @State private var isPresentingAddActivityView = false
     
     var body: some View {
         NavigationView {
-            List(viewModel.newsItems) { item in
-                NavigationLink(destination: NewsDetailView(newsItem: item)) {
-                    NewsListItemView(newsItem: item)
-                        .padding(.vertical, 8)
+            VStack {
+                if viewModel.newsItems.isEmpty {
+                    VStack {
+                        Image(systemName: "pencil.circle.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
+                            .foregroundColor(.green.opacity(0.5))
+                        Text("There are no items in the list, please add your own event!")
+                            .font(.headline)
+                            .foregroundColor(.gray)
+                            .padding()
+                            .frame(width: 300)
+                    }
+                } else {
+                    List(viewModel.newsItems) { item in
+                        NavigationLink(destination: NewsDetailView(newsItem: item)) {
+                            NewsListItemView(newsItem: item)
+                                .padding(.vertical, 8)
+                        }
+                    }
                 }
             }
             .navigationTitle("Activities")
@@ -40,8 +49,6 @@ struct ActivitiesView: View {
         }
     }
 }
-
-
 
 struct AddActivityView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -89,15 +96,12 @@ struct AddActivityView: View {
     }
 }
 
-
-
-
 struct NewsListItemView: View {
     let newsItem: NewsItem
     
     var body: some View {
         VStack(alignment: .leading) {
-            if let imageData = newsItem.imageData, let uiImage = UIImage(data: imageData) {
+            if let imageData = newsItem.imageData, let uiImage = UIImage(data: Data(base64Encoded: imageData)!) {
                 Image(uiImage: uiImage)
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -117,14 +121,13 @@ struct NewsListItemView: View {
     }
 }
 
-
 struct NewsDetailView: View {
     let newsItem: NewsItem
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                if let imageData = newsItem.imageData, let uiImage = UIImage(data: imageData) {
+                if let imageData = newsItem.imageData, let uiImage = UIImage(data: Data(base64Encoded: imageData)!) {
                     Image(uiImage: uiImage)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -138,8 +141,6 @@ struct NewsDetailView: View {
         .navigationTitle(newsItem.title)
     }
 }
-
-
 
 #Preview {
     ActivitiesView()
