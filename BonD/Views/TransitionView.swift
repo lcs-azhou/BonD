@@ -10,15 +10,16 @@ import SwiftUI
 struct TransitionView: View {
     @State var haschosennext = false
     @State var haschosenlogin = false
+    @State var author: String = ""
     
     var body: some View {
         if haschosennext == false {
-            IntroView(next:$haschosennext)
+            IntroView(next: $haschosennext)
         } else {
             if haschosenlogin == false {
-                LoginView(haschosenlogin: $haschosenlogin) // 传递绑定变量
+                LoginView(haschosenlogin: $haschosenlogin, author: $author) // 传递绑定变量
             } else {
-                LandingView(haschosenlogin: $haschosenlogin) // 传递绑定变量
+                LandingView(haschosenlogin: $haschosenlogin, author: author)
             }
         }
     }

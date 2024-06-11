@@ -12,13 +12,9 @@ class ActivitiesViewModel: ObservableObject {
     @Published var newsItems: [NewsItem] = []
     @Published var selectedImageData: Data?
 
-    init() {
-        loadActivities()
-    }
-
-    func addActivity(title: String) {
+    func addActivity(title: String, actText: String?, author: String) {
         let imageDataString = selectedImageData?.base64EncodedString()
-        let newItem = NewsItem(id: UUID().uuidString, title: title, imageData: imageDataString)
+        let newItem = NewsItem(id: UUID().uuidString, title: title, imageData: imageDataString, actText: actText, author: author)
         newsItems.append(newItem)
         saveActivityToSupabase(newItem)
         selectedImageData = nil

@@ -11,7 +11,12 @@ import PhotosUI
 struct ActivitiesView: View {
     @StateObject private var viewModel = ActivitiesViewModel()
     @State private var isPresentingAddActivityView = false
-    
+    @State private var author: String
+
+    init(author: String) {
+        _author = State(initialValue: author)
+    }
+
     var body: some View {
         NavigationView {
             VStack {
@@ -44,7 +49,7 @@ struct ActivitiesView: View {
                 Image(systemName: "plus")
             })
             .sheet(isPresented: $isPresentingAddActivityView) {
-                AddActivityView(viewModel: viewModel)
+                AddActivityView(viewModel: viewModel, author: author)
             }
         }
     }
@@ -53,7 +58,9 @@ struct ActivitiesView: View {
 struct AddActivityView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var title: String = ""
+    @State private var actText: String = ""
     @ObservedObject var viewModel: ActivitiesViewModel
+    @State var author: String
     
     @State private var photoPickerItem: PhotosPickerItem? = nil
     
@@ -61,6 +68,7 @@ struct AddActivityView: View {
         NavigationView {
             Form {
                 TextField("Title", text: $title)
+                TextField("Description", text: $actText) // 添加活动描述的输入字段
                 
                 PhotosPicker(selection: $photoPickerItem, matching: .images) {
                     Text("Select Image")
@@ -89,7 +97,7 @@ struct AddActivityView: View {
             .navigationBarItems(leading: Button("Cancel") {
                 presentationMode.wrappedValue.dismiss()
             }, trailing: Button("Add") {
-                viewModel.addActivity(title: title)
+                viewModel.addActivity(title: title, actText: actText, author: author) // 添加活动时传入描述和作者
                 presentationMode.wrappedValue.dismiss()
             })
         }
@@ -117,6 +125,17 @@ struct NewsListItemView: View {
                 .font(.headline)
                 .foregroundColor(.primary)
                 .lineLimit(2)
+            
+            if let actText = newsItem.actText {
+                Text(actText)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .lineLimit(2)
+            }
+            
+            Text("Author: \(newsItem.author)")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
         }
     }
 }
@@ -135,6 +154,14 @@ struct NewsDetailView: View {
                 }
                 Text(newsItem.title)
                     .font(.title)
+                if let actText = newsItem.actText {
+                    Text(actText)
+                        .font(.body)
+                        .foregroundColor(.secondary)
+                }
+                Text("Author: \(newsItem.author)")
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
             }
             .padding()
         }
@@ -143,5 +170,5 @@ struct NewsDetailView: View {
 }
 
 #Preview {
-    ActivitiesView()
+    ActivitiesView(author: "John Doe")
 }

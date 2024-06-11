@@ -9,6 +9,7 @@ import SwiftUI
 
 struct LandingView: View {
     @Binding var haschosenlogin: Bool
+        var author: String // 添加作者属性
     
     var body: some View {
         @StateObject var viewModel = TimerViewModel()
@@ -24,7 +25,7 @@ struct LandingView: View {
                     Label("Album", systemImage: "person.2.crop.square.stack")
                 }
             
-            ActivitiesView()
+            ActivitiesView(author: author)
                 .tabItem {
                     Label("News", systemImage: "newspaper")
                 }
@@ -41,5 +42,5 @@ struct LandingView: View {
 }
 
 #Preview {
-    LandingView(haschosenlogin: .constant(false))
+    LandingView(haschosenlogin: .constant(false), author: "John Doe")
 }
