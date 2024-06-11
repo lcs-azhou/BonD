@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct LandingView: View {
+    @Binding var haschosenlogin: Bool
+    
     var body: some View {
         @StateObject var viewModel = TimerViewModel()
         
@@ -32,13 +34,12 @@ struct LandingView: View {
                     Label("Message", systemImage: "ellipsis.message")
                 }
         }.accentColor(.green)
-            .overlay(
-                FloatingTimerWindow(viewModel: viewModel)
-            )
+        .overlay(
+            FloatingTimerWindow(viewModel: viewModel)
+        )
     }
 }
 
-
 #Preview {
-    LandingView()
+    LandingView(haschosenlogin: .constant(false))
 }

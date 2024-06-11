@@ -29,7 +29,6 @@ struct SharedAlbum: View {
                         Image(uiImage: item.image)
                             .resizable()
                             .scaledToFit()
-                            .frame(height: 100)
                     }
                 }
                 .listStyle(.automatic)

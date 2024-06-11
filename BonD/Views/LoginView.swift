@@ -7,12 +7,13 @@
 
 import SwiftUI
 import _PhotosUI_SwiftUI
+import Supabase
 
 struct LoginView: View {
+    @Binding var haschosenlogin: Bool
     @State private var firstName: String = ""
     @State private var lastName: String = ""
     @State private var email: String = ""
-    @State private var haschosenlogin = false
     @State private var selectedImage: UIImage? = nil
     @State private var isImagePickerPresented: Bool = false
     @StateObject private var viewModel = SharedAlbumViewModel()
@@ -70,6 +71,7 @@ struct LoginView: View {
                 
                 Button(action: {
                     print("First Name: \(firstName), Last Name: \(lastName), Email: \(email)")
+                    loginUser()
                 }) {
                     Text("Login")
                         .font(.headline)
@@ -89,9 +91,30 @@ struct LoginView: View {
             .padding()
         }
     }
+    
+    private func loginUser() {
+        Task {
+            do {
+                let newUser = [
+                    "name_first": firstName,
+                    "name_last": lastName,
+                    "email": email
+                ]
+                
+                let response = try await supabaseClient
+                    .from("patron")
+                    .insert([newUser])
+                    .execute()
+                
+                print("User inserted: \(response)")
+                haschosenlogin = true
+            } catch {
+                print("Error inserting user: \(error)")
+            }
+        }
+    }
 }
 
-
 #Preview {
-    LoginView()
+    LoginView(haschosenlogin: .constant(false))
 }

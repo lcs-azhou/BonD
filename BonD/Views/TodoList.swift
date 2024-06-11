@@ -2,29 +2,43 @@
 //  TodoList.swift
 //  BonD
 //
-//  Created by Ansheng Zhou on 2024-05-24.
+//  Created by Ansheng Zhou on 2024-06-07.
+//
+
+//
+//  TodoList.swift
+//  BonD
+//
+//  Created by Ansheng Zhou on 2024-06-07.
+//
+
+//
+//  TodoList.swift
+//  BonD
+//
+//  Created by Ansheng Zhou on 2024-06-07.
 //
 
 import SwiftUI
 import Supabase
 
-struct TodoItem: Identifiable, Codable {
-    var id = UUID()
-    var title: String
-    var isCompleted: Bool
+struct TaskItem: Identifiable, Codable {
+    let id: Int // 使用整数类型作为id
+    let taskName: String
+    var completion: Bool
     
-    init(id: UUID = UUID(), title: String, isCompleted: Bool = false) {
-        self.id = id
-        self.title = title
-        self.isCompleted = isCompleted
+    enum CodingKeys: String, CodingKey {
+        case id
+        case taskName = "task_name"
+        case completion
     }
 }
 
 struct TodoList: View {
-    @State private var todos: [TodoItem] = []
+    @State private var todos: [TaskItem] = []
     @State private var newTodoTitle = ""
     @State private var showAlert = false
-    @State private var selectedTodo: TodoItem? = nil
+    @State private var selectedTodo: TaskItem? = nil
     @State private var showTimerView = false
     
     var body: some View {
@@ -32,9 +46,9 @@ struct TodoList: View {
             List {
                 ForEach(todos) { todo in
                     HStack {
-                        Text(todo.title)
+                        Text(todo.taskName)
                         Spacer()
-                        if todo.isCompleted {
+                        if todo.completion {
                             Image(systemName: "checkmark")
                                 .foregroundColor(.green)
                         }
@@ -45,8 +59,7 @@ struct TodoList: View {
                     }
                     .contextMenu(menuItems: {
                         Button {
-                            // viewModel.share(todo)
-                            print("\(todo.title) has been shared")
+                            print("\(todo.taskName) has been shared")
                         } label: {
                             Label {
                                 Text("Share")
@@ -66,12 +79,11 @@ struct TodoList: View {
                         }
                     }).alert(isPresented: $showAlert){
                         Alert(
-                            title: Text("Options for \(selectedTodo?.title ?? "")"),
+                            title: Text("Options for \(selectedTodo?.taskName ?? "")"),
                             message: Text("Choose an action to perform"),
                             primaryButton: .default(Text("Share"), action: {
                                 if let selectedTodo = selectedTodo {
-                                    // share selectedTodo
-                                    print("\(selectedTodo.title) has been shared")
+                                    print("\(selectedTodo.taskName) has been shared")
                                 }
                             }),
                             secondaryButton: .default(Text("Start Timer"), action: {
@@ -87,7 +99,7 @@ struct TodoList: View {
                 .onDelete(perform: deleteTodo)
             }
             .listStyle(.plain)
-            .background{
+            .background {
                 Color(.green.opacity(0.3))
             }
             .navigationTitle("TodoList")
@@ -109,42 +121,39 @@ struct TodoList: View {
                 }
             }
         }
+        .onAppear(perform: loadTodos)
     }
-    
     
     private func loadTodos() {
         Task {
             do {
-                let response = try await supabaseClient
-                    .from("TodoList")
+                let response: [TaskItem] = try await supabaseClient
+                    .from("task")
                     .select()
                     .execute()
+                    .value
                 
-                if let todos = response.value as? [TodoItem] {
-                    self.todos = todos
-                } else {
-                    print("Failed to decode todos")
-                }
+                self.todos = response
+                
             } catch {
                 print("Error loading todos: \(error)")
             }
         }
     }
     
-    private func toggleCompletion(for todo: TodoItem) {
+    private func toggleCompletion(for todo: TaskItem) {
         if let index = todos.firstIndex(where: { $0.id == todo.id }) {
-            todos[index].isCompleted.toggle()
+            todos[index].completion.toggle()
             updateTodoStatus(todo: todos[index])
         }
     }
-
     
-    private func updateTodoStatus(todo: TodoItem) {
+    private func updateTodoStatus(todo: TaskItem) {
         Task {
             do {
                 try await supabaseClient
-                    .from("TodoList")
-                    .update(["isCompleted": todo.isCompleted])
+                    .from("task")
+                    .update(["completion": todo.completion])
                     .eq("id", value: todo.id)
                     .execute()
             } catch {
@@ -158,7 +167,7 @@ struct TodoList: View {
             Task {
                 do {
                     try await supabaseClient
-                        .from("TodoList")
+                        .from("task")
                         .delete()
                         .eq("id", value: todo.id)
                         .execute()
@@ -172,18 +181,18 @@ struct TodoList: View {
     
     private func addTodo() {
         guard !newTodoTitle.isEmpty else { return }
-        let newTodo = TodoItem(title: newTodoTitle)
+        let newTodo = TaskItem(id: Int(Date().timeIntervalSince1970), taskName: newTodoTitle, completion: false)
         todos.append(newTodo)
         newTodoTitle = ""
         saveNewTodoToSupabase(newTodo)
     }
     
-    private func saveNewTodoToSupabase(_ todo: TodoItem) {
+    private func saveNewTodoToSupabase(_ todo: TaskItem) {
         Task {
             do {
-                try await supabaseClient
-                    .from("TodoList")
-                    .insert(todo)
+                let _ = try await supabaseClient
+                    .from("task")
+                    .insert([todo])
                     .execute()
             } catch {
                 print("Error saving new todo: \(error)")
@@ -191,7 +200,6 @@ struct TodoList: View {
         }
     }
 }
-
 
 #Preview {
     TodoList()

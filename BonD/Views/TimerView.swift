@@ -10,13 +10,13 @@ import Combine
 
 struct TimerView: View {
     @ObservedObject var viewModel: TimerViewModel
-    let todo: TodoItem
+    let todo: TaskItem
 
     @State private var selectedMinutes = 25
     
     var body: some View {
         VStack {
-            Text(todo.title)
+            Text(todo.taskName)
                 .font(.largeTitle)
                 .padding()
             
@@ -65,7 +65,7 @@ struct TimerView: View {
 
 
 #Preview {
-    TimerView(viewModel: TimerViewModel(), todo: TodoItem(title: "学习"))
+    TimerView(viewModel: TimerViewModel(), todo: TaskItem(id: 1, taskName: "Homework", completion: false))
 }
 
 

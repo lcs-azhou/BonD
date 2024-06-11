@@ -15,10 +15,10 @@ struct TransitionView: View {
         if haschosennext == false {
             IntroView(next:$haschosennext)
         } else {
-            if haschosenlogin == false{
-                LoginView()
-            } else{
-                LandingView()
+            if haschosenlogin == false {
+                LoginView(haschosenlogin: $haschosenlogin) // 传递绑定变量
+            } else {
+                LandingView(haschosenlogin: $haschosenlogin) // 传递绑定变量
             }
         }
     }
