@@ -10,31 +10,32 @@ import SwiftUI
 struct LandingView: View {
     @Binding var haschosenlogin: Bool
     var author: String // 添加作者属性
-    
+
+    @StateObject var viewModel = TimerViewModel() // 将StateObject移到视图外部
+
     var body: some View {
-        @StateObject var viewModel = TimerViewModel()
-        
         TabView {
             TodoList()
                 .tabItem {
                     Label("Todos", systemImage: "checklist")
                 }
-            
+
             SharedAlbum()
                 .tabItem {
                     Label("Album", systemImage: "person.2.crop.square.stack")
                 }
-            
+
             ActivitiesView(author: author)
                 .tabItem {
                     Label("News", systemImage: "newspaper")
                 }
-            
+
             MessageView()
                 .tabItem {
                     Label("Message", systemImage: "ellipsis.message")
                 }
-        }.accentColor(.green)
+        }
+        .accentColor(.green)
         .overlay(
             FloatingTimerWindow(viewModel: viewModel)
         )

@@ -17,7 +17,7 @@ struct LoginView: View {
     @State private var selectedImage: UIImage? = nil
     @State private var isImagePickerPresented: Bool = false
     @StateObject private var viewModel = SharedAlbumViewModel()
-    
+
     var body: some View {
         VStack {
             Text("Login")

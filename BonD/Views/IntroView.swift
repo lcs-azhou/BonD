@@ -9,9 +9,8 @@ import SwiftUI
 
 struct IntroView: View {
     @State var currentTab: Int = 0
-    @State var swipeDirection: String = ""
     @Binding var next: Bool
-    
+
     var body: some View {
         VStack {
             TabView(selection: $currentTab) {
@@ -34,9 +33,7 @@ struct IntroView: View {
                                 .frame(height:50)
                                 .padding(125)
                             Text("Next")
-                                .font(
-                                    .custom("PingFangSC-Thin", size: 45)
-                                )
+                                .font(.custom("PingFangSC-Thin", size: 45))
                                 .foregroundStyle(.green.opacity(0.7))
                                 .onTapGesture {
                                     next = true

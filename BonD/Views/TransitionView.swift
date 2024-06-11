@@ -13,7 +13,7 @@ struct TransitionView: View {
     @Binding var author: String
 
     var body: some View {
-        if hasCompletedIntro == false {
+        if !hasCompletedIntro {
             IntroView(next: $hasCompletedIntro)
         } else {
             LoginView(haschosenlogin: $haschosenlogin, author: $author)
