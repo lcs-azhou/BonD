@@ -8,23 +8,19 @@
 import SwiftUI
 
 struct TransitionView: View {
-    @State var haschosennext = false
-    @State var haschosenlogin = false
-    @State var author: String = ""
-    
+    @Binding var haschosenlogin: Bool
+    @Binding var hasCompletedIntro: Bool
+    @Binding var author: String
+
     var body: some View {
-        if haschosennext == false {
-            IntroView(next: $haschosennext)
+        if hasCompletedIntro == false {
+            IntroView(next: $hasCompletedIntro)
         } else {
-            if haschosenlogin == false {
-                LoginView(haschosenlogin: $haschosenlogin, author: $author) // 传递绑定变量
-            } else {
-                LandingView(haschosenlogin: $haschosenlogin, author: author)
-            }
+            LoginView(haschosenlogin: $haschosenlogin, author: $author)
         }
     }
 }
 
 #Preview {
-    TransitionView()
+    TransitionView(haschosenlogin: .constant(false), hasCompletedIntro: .constant(false), author: .constant(""))
 }

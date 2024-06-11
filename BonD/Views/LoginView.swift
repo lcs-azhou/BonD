@@ -71,7 +71,9 @@ struct LoginView: View {
             Button(action: {
                 print("First Name: \(firstName), Last Name: \(lastName), Email: \(email)")
                 author = firstName // 设置作者名字
+                UserDefaults.standard.set(firstName, forKey: "author")
                 haschosenlogin = true // 设置登录状态为已选择
+                UserDefaults.standard.set(true, forKey: "haschosenlogin")
             }) {
                 Text("Login")
                     .font(.headline)

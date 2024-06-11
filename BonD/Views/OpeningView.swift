@@ -9,13 +9,17 @@ import SwiftUI
 
 struct OpeningView: View {
     @State private var haschosenstarted = false
-    @State var haschosennext = false
+    @State private var haschosenlogin = UserDefaults.standard.bool(forKey: "haschosenlogin")
+    @State private var hasCompletedIntro = UserDefaults.standard.bool(forKey: "hasCompletedIntro")
+    @State private var author = UserDefaults.standard.string(forKey: "author") ?? ""
     
     var body: some View {
         if haschosenstarted == false {
             StartView(getstarted: $haschosenstarted)
+        } else if hasCompletedIntro == false || haschosenlogin == false {
+            TransitionView(haschosenlogin: $haschosenlogin, hasCompletedIntro: $hasCompletedIntro, author: $author)
         } else {
-            TransitionView()
+            LandingView(haschosenlogin: $haschosenlogin, author: author)
         }
     }
 }

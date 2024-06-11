@@ -8,27 +8,13 @@
 import SwiftUI
 
 struct IntroView: View {
-    
-    // MARK: Stored properties
-    
-    // Keep track of what tab we are currently on
     @State var currentTab: Int = 0
-    
-    // Report on the swipe direction, once a swipe occurs
     @State var swipeDirection: String = ""
-    
     @Binding var next: Bool
     
-    // MARK: Computed properties
     var body: some View {
-        
         VStack {
-            
-            // Show a tab view
-            //
-            // The TabView will updated $currentTab with the tag of whatever page is currently selected
             TabView(selection: $currentTab) {
-
                 IntroItem1()
                     .tag(0)
                 
@@ -54,25 +40,23 @@ struct IntroView: View {
                                 .foregroundStyle(.green.opacity(0.7))
                                 .onTapGesture {
                                     next = true
-                            }
+                                    UserDefaults.standard.set(true, forKey: "hasCompletedIntro")
+                                }
                         }
                     }
                 }
-
             }
             .background{
                 Color(.green)
                     .opacity(0.45)
                     .ignoresSafeArea()
             }
-            // Present the tab view
             .tabViewStyle(.page)
-            // Always show the dots to indicate available pages
             .indexViewStyle(.page(backgroundDisplayMode: .always))
-            
         }
     }
 }
+
 #Preview {
     IntroView(next: Binding.constant(false))
 }

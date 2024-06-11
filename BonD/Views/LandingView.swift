@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LandingView: View {
     @Binding var haschosenlogin: Bool
-        var author: String // 添加作者属性
+    var author: String // 添加作者属性
     
     var body: some View {
         @StateObject var viewModel = TimerViewModel()
