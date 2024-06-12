@@ -16,7 +16,7 @@ struct MessageView: View {
             ScrollView {
                 VStack {
                     ForEach(viewModel.messages) { message in
-                        MessageBubbleView(message: message, isFromCurrentUser: message.isFromCurrentUser, profileImageURL: message.profileImageURL)
+                        MessageBubbleView(message: message, isFromCurrentUser: message.isFromCurrentUser, profileImageURL: nil)
                     }
                 }
             }

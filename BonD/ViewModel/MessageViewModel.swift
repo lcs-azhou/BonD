@@ -24,7 +24,7 @@ class MessagesViewModel: ObservableObject {
     
     func sendMessage() {
         guard !currentMessage.isEmpty else { return }
-        let newMessage = Message(id: 0, text: currentMessage, patron_id: 1, isFromCurrentUser: true)  // Update patron_id appropriately
+        let newMessage = Message(id: 0, patron_id: 1, message_text: currentMessage, chat_room_id: chatRoomId, isFromCurrentUser: true)
         messages.append(newMessage)
         currentMessage = ""
         saveMessageToSupabase(newMessage)
@@ -33,10 +33,9 @@ class MessagesViewModel: ObservableObject {
     private func saveMessageToSupabase(_ message: Message) {
         Task {
             do {
-                var encodedMessage = message
                 let _ = try await supabaseClient
                     .from("message")
-                    .insert(encodedMessage)
+                    .insert(message)
                     .execute()
                 loadMessages()
             } catch {
@@ -63,7 +62,7 @@ class MessagesViewModel: ObservableObject {
     }
     
     func getProfileImageURL(for patronId: Int) -> String? {
-        // Implement the method to fetch profile image URL for given patron ID
+        // Implement the logic to fetch profile image URL for given patron ID
         return nil // Replace with actual implementation
     }
 }

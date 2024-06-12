@@ -23,7 +23,7 @@ struct MessageBubbleView: View {
         HStack {
             if isFromCurrentUser {
                 Spacer()
-                Text(message.text)
+                Text(message.message_text)
                     .padding()
                     .background(Color.green.opacity(0.75))
                     .cornerRadius(15)
@@ -47,7 +47,7 @@ struct MessageBubbleView: View {
                         .frame(width: 30, height: 30)
                         .padding(.trailing, 5)
                 }
-                Text(message.text)
+                Text(message.message_text)
                     .padding()
                     .background(Color.white.opacity(0.65))
                     .cornerRadius(15)
@@ -61,5 +61,5 @@ struct MessageBubbleView: View {
 }
 
 #Preview {
-    MessageBubbleView(message: Message(id: 0, text: "Hello, this is BonD.", patron_id: 1, isFromCurrentUser: false, profileImageURL: nil), isFromCurrentUser: false, profileImageURL: nil)
+    MessageBubbleView(message: Message(id: 0, patron_id: 1, message_text: "Hello, this is BonD.", chat_room_id: nil, isFromCurrentUser: false), isFromCurrentUser: false, profileImageURL: nil)
 }
