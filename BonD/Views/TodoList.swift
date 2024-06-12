@@ -66,14 +66,6 @@ struct TodoListView: View {
     }
 }
 
-struct TodoListView_Previews: PreviewProvider {
-    static var previews: some View {
-        let fakeTodos = [
-            TaskItem(id: 1, taskName: "Homework", completion: false),
-            TaskItem(id: 2, taskName: "Groceries", completion: true)
-        ]
-        let viewModel = TodoListViewModel()
-        viewModel.todos = fakeTodos
-        return TodoListView(viewModel: viewModel)
-    }
+#Preview{
+    TodoListView(viewModel: TodoListViewModel())
 }

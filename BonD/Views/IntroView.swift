@@ -22,7 +22,7 @@ struct IntroView: View {
                     .tag(1)
                 
                 ZStack {
-                    IntroItem3(viewModel: MessagesViewModel(supabaseClient: supabaseClient, chatRoomId: 1))
+                    IntroItem3(viewModel: MessagesViewModel( chatRoomId: 1))
                         .tag(2)
                     VStack {
                         Spacer()
