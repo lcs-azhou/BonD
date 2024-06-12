@@ -13,7 +13,12 @@ struct Message: Codable, Identifiable {
     var patron_id: Int
     var message_text: String
     var chat_room_id: Int?
-    var isFromCurrentUser: Bool
+    
+    // 计算属性，用于判断消息是否来自当前用户
+    var isFromCurrentUser: Bool {
+        // 根据逻辑判断当前用户
+        return patron_id == 1 // 示例逻辑，根据实际情况修改
+    }
     
     // 定义编码键，匹配 JSON 键
     enum CodingKeys: String, CodingKey {
@@ -21,15 +26,6 @@ struct Message: Codable, Identifiable {
         case patron_id
         case message_text
         case chat_room_id
-        // 不需要包含 isFromCurrentUser，因为这是一个计算属性，不会被编码/解码
-    }
-
-    // 初始化方法
-    init(id: Int, patron_id: Int, message_text: String, chat_room_id: Int?, isFromCurrentUser: Bool) {
-        self.id = id
-        self.patron_id = patron_id
-        self.message_text = message_text
-        self.chat_room_id = chat_room_id
-        self.isFromCurrentUser = isFromCurrentUser
     }
 }
+

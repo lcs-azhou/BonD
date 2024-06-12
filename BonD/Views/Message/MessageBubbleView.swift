@@ -64,8 +64,7 @@ struct MessageBubbleView: View {
             id: 0,
             patron_id: 1,
             message_text: "Hello, this is BonD.",
-            chat_room_id: nil,
-            isFromCurrentUser: false
+            chat_room_id: nil
         ),
         isFromCurrentUser: false,
         profileImageURL: nil

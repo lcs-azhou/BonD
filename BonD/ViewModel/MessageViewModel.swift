@@ -23,7 +23,7 @@ class MessagesViewModel: ObservableObject {
     
     func sendMessage() {
         guard !currentMessage.isEmpty else { return }
-        let newMessage = Message(id: 0, patron_id: 1, message_text: currentMessage, chat_room_id: chatRoomId, isFromCurrentUser: true)
+        let newMessage = Message(id: 0, patron_id: 1, message_text: currentMessage, chat_room_id: chatRoomId)
         messages.append(newMessage)
         currentMessage = ""
         saveMessageToSupabase(newMessage)
