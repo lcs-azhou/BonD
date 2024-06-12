@@ -22,6 +22,7 @@
 		7935B88D2C19338F00181CA9 /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = 7935B88C2C19338F00181CA9 /* Realtime */; };
 		7935B88F2C19338F00181CA9 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 7935B88E2C19338F00181CA9 /* Storage */; };
 		7935B8912C19338F00181CA9 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 7935B8902C19338F00181CA9 /* Supabase */; };
+		7935B8932C19DC5B00181CA9 /* TimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7935B8922C19DC5B00181CA9 /* TimerState.swift */; };
 		794DEE3D2C13890800B3B089 /* SupabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DEE3C2C13890800B3B089 /* SupabaseHelper.swift */; };
 		794DEE602C138C9C00B3B089 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 794DEE5F2C138C9C00B3B089 /* Auth */; };
 		794DEE622C138C9C00B3B089 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 794DEE612C138C9C00B3B089 /* Functions */; };
@@ -61,6 +62,7 @@
 		790F981B2C18ECE600341502 /* NewsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
 		790F981D2C191CB600341502 /* Patron.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patron.swift; sourceTree = "<group>"; };
 		790F98212C1925EF00341502 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		7935B8922C19DC5B00181CA9 /* TimerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerState.swift; sourceTree = "<group>"; };
 		794DEE3C2C13890800B3B089 /* SupabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseHelper.swift; sourceTree = "<group>"; };
 		794DEE6B2C138EAB00B3B089 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7994BC272C0608E600953E4D /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				790F981B2C18ECE600341502 /* NewsItem.swift */,
 				790F981D2C191CB600341502 /* Patron.swift */,
 				790F98212C1925EF00341502 /* ChatRoom.swift */,
+				7935B8922C19DC5B00181CA9 /* TimerState.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				79D520CE2C0233D6000FFAB5 /* MessageView.swift in Sources */,
 				79AD95202C127BFE00328C5C /* ActivitiesViewModel.swift in Sources */,
 				790F981E2C191CB600341502 /* Patron.swift in Sources */,
+				7935B8932C19DC5B00181CA9 /* TimerState.swift in Sources */,
 				794DEE6C2C138EAB00B3B089 /* LoginView.swift in Sources */,
 				79D520CA2C023358000FFAB5 /* Message.swift in Sources */,
 				79DF76C62C0A5C3A00A5447B /* IntroItem3.swift in Sources */,

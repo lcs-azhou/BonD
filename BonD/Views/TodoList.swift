@@ -5,20 +5,6 @@
 //  Created by Ansheng Zhou on 2024-06-07.
 //
 
-//
-//  TodoList.swift
-//  BonD
-//
-//  Created by Ansheng Zhou on 2024-06-07.
-//
-
-//
-//  TodoList.swift
-//  BonD
-//
-//  Created by Ansheng Zhou on 2024-06-07.
-//
-
 import SwiftUI
 import Supabase
 
@@ -92,7 +78,7 @@ struct TodoList: View {
                         )
                     }.sheet(isPresented: $showTimerView) {
                         if let selectedTodo = selectedTodo {
-                            TimerView(viewModel: TimerViewModel(), todo: selectedTodo)
+                            TimerView(viewModel: TimerViewModel(supabaseClient: supabaseClient, taskId: selectedTodo.id), todo: selectedTodo)
                         }
                     }
                 }

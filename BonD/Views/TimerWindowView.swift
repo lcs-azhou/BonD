@@ -5,6 +5,7 @@
 //  Created by Ansheng Zhou on 2024-05-24.
 //
 import SwiftUI
+import Supabase
 
 struct FloatingTimerWindow: View {
     @ObservedObject var viewModel: TimerViewModel
@@ -41,7 +42,6 @@ struct FloatingTimerWindow: View {
                 let constrainedX = min(max(newPosition.width, 0), screenSize.width - 200)
                 let constrainedY = min(max(newPosition.height, 0), screenSize.height - 100)
                 
-                
                 position = CGSize(width: constrainedX, height: constrainedY)
                 dragOffset = .zero
             }
@@ -50,5 +50,5 @@ struct FloatingTimerWindow: View {
 }
 
 #Preview {
-    FloatingTimerWindow(viewModel: TimerViewModel())
+    FloatingTimerWindow(viewModel: TimerViewModel(supabaseClient: supabaseClient, taskId: 1))
 }
