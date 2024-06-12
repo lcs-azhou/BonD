@@ -9,10 +9,12 @@ import SwiftUI
 
 struct MessageBubbleView: View {
     let message: Message
+    let isFromCurrentUser: Bool
+    let profileImageURL: String?
     
     var body: some View {
         HStack {
-            if message.isFromCurrentUser {
+            if isFromCurrentUser {
                 Spacer()
                 Text(message.text)
                     .padding()
@@ -21,16 +23,46 @@ struct MessageBubbleView: View {
                     .foregroundColor(.white)
                     .frame(maxWidth: 250, alignment: .trailing)
                 
-                Circle()
-                    .fill(Color.gray)
-                    .frame(width: 30, height: 30)
+                if let url = profileImageURL, let imageUrl = URL(string: url) {
+                    AsyncImage(url: imageUrl) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 30, height: 30)
+                            .clipShape(Circle())
+                    } placeholder: {
+                        Circle()
+                            .fill(Color.gray)
+                            .frame(width: 30, height: 30)
+                    }
                     .padding(.leading, 5)
+                } else {
+                    Circle()
+                        .fill(Color.gray)
+                        .frame(width: 30, height: 30)
+                        .padding(.leading, 5)
+                }
             } else {
-                
-                Circle()
-                    .fill(Color.gray) 
-                    .frame(width: 30, height: 30)
+                if let url = profileImageURL, let imageUrl = URL(string: url) {
+                    AsyncImage(url: imageUrl) { image in
+                        image
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .frame(width: 30, height: 30)
+                            .clipShape(Circle())
+                    } placeholder: {
+                        Circle()
+                            .fill(Color.gray)
+                            .frame(width: 30, height: 30)
+                    }
                     .padding(.trailing, 5)
+                } else {
+                    Circle()
+                        .fill(Color.gray)
+                        .frame(width: 30, height: 30)
+                        .padding(.trailing, 5)
+                }
+                
                 Text(message.text)
                     .padding()
                     .background(Color.white.opacity(0.65))
@@ -44,6 +76,6 @@ struct MessageBubbleView: View {
     }
 }
 
-#Preview{
-    MessageBubbleView(message: Message(text: "Hello,this is BonD.", isFromCurrentUser: false))
+#Preview {
+    MessageBubbleView(message: Message(id: 1, text: "Hello, this is BonD.", patron_id: 1), isFromCurrentUser: false, profileImageURL: "https://example.com/profile.jpg")
 }

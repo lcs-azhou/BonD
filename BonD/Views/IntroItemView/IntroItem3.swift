@@ -13,13 +13,16 @@ struct IntroItem3: View {
     var body: some View {
         VStack {
             ForEach(viewModel.messages) { message in
-                MessageBubbleView(message: message)
-            }.padding()
-        }.frame(height: 320)
-            .background(Color(.green.opacity(0.3)))
-            .cornerRadius(16)
+                let profileImageURL = viewModel.profileImageURLs[message.patron_id]
+                MessageBubbleView(message: message, isFromCurrentUser: message.patron_id == 1, profileImageURL: profileImageURL)
+            }
             .padding()
-            .padding()
+        }
+        .frame(height: 320)
+        .background(Color(.green.opacity(0.3)))
+        .cornerRadius(16)
+        .padding()
+        .padding()
     }
 }
 

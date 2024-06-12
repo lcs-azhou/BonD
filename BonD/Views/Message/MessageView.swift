@@ -15,7 +15,9 @@ struct MessageView: View {
             ScrollView {
                 VStack {
                     ForEach(viewModel.messages) { message in
-                        MessageBubbleView(message: message)
+                        // 获取 `patron_id` 以获取 profile_image_url
+                        let profileImageURL = getProfileImageURL(for: message.patron_id)
+                        MessageBubbleView(message: message, isFromCurrentUser: message.patron_id == 1, profileImageURL: profileImageURL)
                     }
                 }
             }
@@ -45,9 +47,15 @@ struct MessageView: View {
                 .opacity(0.7)
         }
     }
+    
+    private func getProfileImageURL(for patronId: Int) -> String? {
+        // 获取 profile_image_url 基于 patronId 从您的数据源
+        // 这是一个占位实现，您需要根据实际情况实现此功能
+        // 例如，通过调用 Supabase 获取 patron 的 profile_image_url
+        return "https://example.com/profile.jpg"
+    }
 }
 
-#Preview{
+#Preview {
     MessageView()
 }
-
