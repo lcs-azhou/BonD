@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		790F981C2C18ECE600341502 /* NewsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790F981B2C18ECE600341502 /* NewsItem.swift */; };
 		790F981E2C191CB600341502 /* Patron.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790F981D2C191CB600341502 /* Patron.swift */; };
+		790F98222C1925EF00341502 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790F98212C1925EF00341502 /* ChatRoom.swift */; };
 		794DEE3D2C13890800B3B089 /* SupabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DEE3C2C13890800B3B089 /* SupabaseHelper.swift */; };
 		794DEE602C138C9C00B3B089 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 794DEE5F2C138C9C00B3B089 /* Auth */; };
 		794DEE622C138C9C00B3B089 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 794DEE612C138C9C00B3B089 /* Functions */; };
@@ -47,6 +48,7 @@
 /* Begin PBXFileReference section */
 		790F981B2C18ECE600341502 /* NewsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsItem.swift; sourceTree = "<group>"; };
 		790F981D2C191CB600341502 /* Patron.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patron.swift; sourceTree = "<group>"; };
+		790F98212C1925EF00341502 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		794DEE3C2C13890800B3B089 /* SupabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseHelper.swift; sourceTree = "<group>"; };
 		794DEE6B2C138EAB00B3B089 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7994BC272C0608E600953E4D /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				79FC8B4B2C076CB60061CAC3 /* PhotoPicker.swift */,
 				790F981B2C18ECE600341502 /* NewsItem.swift */,
 				790F981D2C191CB600341502 /* Patron.swift */,
+				790F98212C1925EF00341502 /* ChatRoom.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				79D520C62C0231DA000FFAB5 /* MessageBubbleView.swift in Sources */,
 				79D520BB2C011E22000FFAB5 /* SharedAlbum.swift in Sources */,
 				79F7B9C72C12118200641B68 /* OpeningView.swift in Sources */,
+				790F98222C1925EF00341502 /* ChatRoom.swift in Sources */,
 				79F7B9C92C12149800641B68 /* TransitionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

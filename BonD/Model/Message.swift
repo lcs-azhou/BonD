@@ -8,13 +8,17 @@
 import Foundation
 
 struct Message: Identifiable, Codable {
-    var id: Int? // 从Int改为Int?以匹配数据库中的ID
+    let id: Int
     let text: String
     let patron_id: Int
+    let isFromCurrentUser: Bool
+    let profileImageURL: String?
     
-    enum CodingKeys: String, CodingKey {
-        case id
-        case text = "message_text"
-        case patron_id
+    init(id: Int = 0, text: String, patron_id: Int, isFromCurrentUser: Bool, profileImageURL: String? = nil) {
+        self.id = id
+        self.text = text
+        self.patron_id = patron_id
+        self.isFromCurrentUser = isFromCurrentUser
+        self.profileImageURL = profileImageURL
     }
 }

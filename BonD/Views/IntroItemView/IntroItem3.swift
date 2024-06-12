@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct IntroItem3: View {
-    @StateObject var viewModel = MessagesViewModel()
+    @StateObject var viewModel: MessagesViewModel
     
     var body: some View {
         VStack {
             ForEach(viewModel.messages) { message in
-                let profileImageURL = viewModel.profileImageURLs[message.patron_id]
+                let profileImageURL = viewModel.getProfileImageURL(for: message.patron_id)
                 MessageBubbleView(message: message, isFromCurrentUser: message.patron_id == 1, profileImageURL: profileImageURL)
             }
             .padding()
@@ -27,7 +27,5 @@ struct IntroItem3: View {
 }
 
 #Preview {
-    TabView {
-        IntroItem3()
-    }
+    IntroItem3(viewModel: MessagesViewModel(supabaseClient: supabaseClient, chatRoomId: 1))
 }

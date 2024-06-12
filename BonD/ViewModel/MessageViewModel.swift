@@ -1,41 +1,51 @@
 //
-//  MessageViewModel.swift
+//  MessagesViewModel.swift
 //  BonD
 //
 //  Created by Ansheng Zhou on 2024-05-25.
 //
 
-import SwiftUI
+import Foundation
 import Combine
 import Supabase
 
 class MessagesViewModel: ObservableObject {
     @Published var messages: [Message] = []
     @Published var currentMessage: String = ""
-    @Published var profileImageURLs: [Int: String] = [:]
+    
+    private var supabaseClient: SupabaseClient
+    private var chatRoomId: Int
+    
+    init(supabaseClient: SupabaseClient, chatRoomId: Int) {
+        self.supabaseClient = supabaseClient
+        self.chatRoomId = chatRoomId
+        loadMessages()
+    }
     
     func sendMessage() {
         guard !currentMessage.isEmpty else { return }
-        let newMessage = Message(id: nil, text: currentMessage, patron_id: 1) // 使用正确的 patron_id
-        saveMessageToSupabase(newMessage)
+        let newMessage = Message(id: 0, text: currentMessage, patron_id: 1, isFromCurrentUser: true)  // Update patron_id appropriately
+        messages.append(newMessage)
         currentMessage = ""
+        saveMessageToSupabase(newMessage)
     }
     
     private func saveMessageToSupabase(_ message: Message) {
         Task {
             do {
+                var encodedMessage = message
                 let _ = try await supabaseClient
                     .from("message")
-                    .insert([message])
+                    .insert(encodedMessage)
                     .execute()
-                await loadMessages()
+                loadMessages()
             } catch {
                 print("Error saving message to Supabase: \(error)")
             }
         }
     }
     
-    func loadMessages() {
+    private func loadMessages() {
         Task {
             do {
                 let response: [Message] = try await supabaseClient
@@ -43,41 +53,12 @@ class MessagesViewModel: ObservableObject {
                     .select()
                     .execute()
                     .value
-                DispatchQueue.main.async { [weak self] in
-                    self?.messages = response
-                    self?.loadProfileImages()
+                DispatchQueue.main.async {
+                    self.messages = response
                 }
             } catch {
                 print("Error loading messages from Supabase: \(error)")
             }
-        }
-    }
-    
-    private func loadProfileImages() {
-        Task {
-            for message in messages {
-                if profileImageURLs[message.patron_id] == nil {
-                    let profileImageURL = await getProfileImageURL(for: message.patron_id)
-                    DispatchQueue.main.async { [weak self] in
-                        self?.profileImageURLs[message.patron_id] = profileImageURL
-                    }
-                }
-            }
-        }
-    }
-    
-    func getProfileImageURL(for patronId: Int) async -> String? {
-        do {
-            let response: [Patron] = try await supabaseClient
-                .from("patron")
-                .select()
-                .eq("id", value: patronId)
-                .execute()
-                .value
-            return response.first?.profile_image_url
-        } catch {
-            print("Error getting profile image URL: \(error)")
-            return nil
         }
     }
 }
