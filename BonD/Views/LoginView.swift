@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import _PhotosUI_SwiftUI
+import PhotosUI
 
 struct LoginView: View {
     @State private var firstName: String = ""
@@ -49,57 +49,58 @@ struct LoginView: View {
             }
             .padding(.bottom, 20)
             .sheet(isPresented: $isImagePickerPresented) {
-                PhotosPicker("Select Photo", selection: $viewModel.selectionResult, matching: .images)
-                
-                TextField("First Name", text: $firstName)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(5.0)
-                    .padding(.bottom, 20)
-                
-                TextField("Last Name", text: $lastName)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(5.0)
-                    .padding(.bottom, 20)
-                
-                TextField("Email Address", text: $email)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(5.0)
-                    .padding(.bottom, 20)
-                    .keyboardType(.emailAddress)
-                
-                TextField("Chat Room Code (Optional)", text: $chatRoomCode)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .cornerRadius(5.0)
-                    .padding(.bottom, 20)
-                
-                Button(action: {
-                    if chatRoomCode.isEmpty {
-                        createChatRoom()
-                    } else {
-                        joinChatRoom()
-                    }
-                }) {
-                    Text("Login")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding()
-                        .frame(width: 220, height: 60)
-                        .background(Color.green)
-                        .cornerRadius(15.0)
+                PhotosPicker(selection: $viewModel.selectionResult, matching: .images) {
+                    Text("Select Photo")
                 }
-                .padding(.top, 20)
-                .alert(isPresented: $showAlert) {
-                    Alert(title: Text("Alert"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
-                }
-                
-                Spacer()
             }
-            .padding()
+            TextField("First Name", text: $firstName)
+                .padding()
+                .background(Color(.systemGray6))
+                .cornerRadius(5.0)
+                .padding(.bottom, 20)
+            
+            TextField("Last Name", text: $lastName)
+                .padding()
+                .background(Color(.systemGray6))
+                .cornerRadius(5.0)
+                .padding(.bottom, 20)
+            
+            TextField("Email Address", text: $email)
+                .padding()
+                .background(Color(.systemGray6))
+                .cornerRadius(5.0)
+                .padding(.bottom, 20)
+                .keyboardType(.emailAddress)
+            
+            TextField("Chat Room Code (Optional)", text: $chatRoomCode)
+                .padding()
+                .background(Color(.systemGray6))
+                .cornerRadius(5.0)
+                .padding(.bottom, 20)
+            
+            Button(action: {
+                if chatRoomCode.isEmpty {
+                    createChatRoom()
+                } else {
+                    joinChatRoom()
+                }
+            }) {
+                Text("Login")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .padding()
+                    .frame(width: 220, height: 60)
+                    .background(Color.green)
+                    .cornerRadius(15.0)
+            }
+            .padding(.top, 20)
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text("Alert"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+            }
+            
+            Spacer()
         }
+        .padding()
     }
     
     private func createChatRoom() {
