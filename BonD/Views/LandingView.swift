@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import Supabase
 
 struct LandingView: View {
     @Binding var haschosenlogin: Bool
-    var author: String // 添加作者属性
+    var author: String
 
-    @StateObject var viewModel = TimerViewModel() // 将StateObject移到视图外部
+    @StateObject var viewModel = TimerViewModel()
 
     var body: some View {
         TabView {
@@ -30,7 +31,8 @@ struct LandingView: View {
                     Label("News", systemImage: "newspaper")
                 }
 
-            MessageView()
+            let supabaseClient = SupabaseClient(supabaseURL: supabaseURL, supabaseKey: supabaseKey)
+            MessageView(viewModel: MessagesViewModel(supabaseClient: supabaseClient, chatRoomId: 0))
                 .tabItem {
                     Label("Message", systemImage: "ellipsis.message")
                 }
@@ -43,5 +45,6 @@ struct LandingView: View {
 }
 
 #Preview {
-    LandingView(haschosenlogin: .constant(false), author: "John Doe")
+    let supabaseClient = SupabaseClient(supabaseURL: supabaseURL, supabaseKey: supabaseKey)
+    return LandingView(haschosenlogin: .constant(false), author: "John Doe")
 }

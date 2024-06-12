@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Supabase
 
 struct IntroItem3: View {
     @StateObject var viewModel: MessagesViewModel
@@ -27,5 +28,6 @@ struct IntroItem3: View {
 }
 
 #Preview {
-    IntroItem3(viewModel: MessagesViewModel(supabaseClient: supabaseClient, chatRoomId: 1))
+    let supabaseClient = SupabaseClient(supabaseURL: supabaseURL, supabaseKey: supabaseKey)
+    return IntroItem3(viewModel: MessagesViewModel(supabaseClient: supabaseClient, chatRoomId: 1))
 }

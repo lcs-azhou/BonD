@@ -49,5 +49,6 @@ struct MessageView: View {
 }
 
 #Preview {
-    MessageView(viewModel: <#T##MessagesViewModel#>)
+    let supabaseClient = SupabaseClient(supabaseURL: supabaseURL, supabaseKey: supabaseKey)
+    return MessageView(viewModel: MessagesViewModel(supabaseClient: supabaseClient, chatRoomId: 0))
 }

@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import Supabase
 
 struct IntroView: View {
     @State var currentTab: Int = 0
     @Binding var next: Bool
-
+    
     var body: some View {
         VStack {
             TabView(selection: $currentTab) {
@@ -21,7 +22,8 @@ struct IntroView: View {
                     .tag(1)
                 
                 ZStack {
-                    IntroItem3()
+                    let supabaseClient = SupabaseClient(supabaseURL: supabaseURL, supabaseKey: supabaseKey)
+                    IntroItem3(viewModel: MessagesViewModel(supabaseClient: supabaseClient, chatRoomId: 1))
                         .tag(2)
                     VStack {
                         Spacer()
@@ -55,5 +57,6 @@ struct IntroView: View {
 }
 
 #Preview {
-    IntroView(next: Binding.constant(false))
+    let supabaseClient = SupabaseClient(supabaseURL: supabaseURL, supabaseKey: supabaseKey)
+    return IntroView(next: .constant(false))
 }

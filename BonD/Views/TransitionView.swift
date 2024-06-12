@@ -16,7 +16,7 @@ struct TransitionView: View {
         if !hasCompletedIntro {
             IntroView(next: $hasCompletedIntro)
         } else {
-            LoginView(haschosenlogin: $haschosenlogin, author: $author)
+            LoginView()
         }
     }
 }

@@ -61,4 +61,9 @@ class MessagesViewModel: ObservableObject {
             }
         }
     }
+    
+    func getProfileImageURL(for patronId: Int) -> String? {
+        // Implement the method to fetch profile image URL for given patron ID
+        return nil // Replace with actual implementation
+    }
 }
