@@ -9,6 +9,7 @@ import SwiftUI
 import Combine
 import Supabase
 
+@MainActor // 确保在主线程上执行
 class TimerViewModel: ObservableObject {
     @Published var timeRemaining: Int
     @Published var timerRunning: Bool = false
@@ -63,6 +64,7 @@ class TimerViewModel: ObservableObject {
         Task {
             do {
                 let timerState = TimerState(
+                    id: nil, // Assuming id is auto-incremented in the database
                     task_id: self.taskId,
                     time_remaining: self.timeRemaining,
                     timer_running: self.timerRunning,
@@ -90,10 +92,8 @@ class TimerViewModel: ObservableObject {
                     .value
                 
                 if let timerState = response.first {
-                    DispatchQueue.main.async {
-                        self.timeRemaining = timerState.time_remaining
-                        self.timerRunning = timerState.timer_running
-                    }
+                    self.timeRemaining = timerState.time_remaining
+                    self.timerRunning = timerState.timer_running
                 }
             } catch {
                 print("Error loading timer state from Supabase: \(error)")

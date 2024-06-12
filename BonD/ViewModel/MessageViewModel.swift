@@ -9,12 +9,13 @@ import Foundation
 import Combine
 import Supabase
 
+@MainActor // 确保在主线程上执行
 class MessagesViewModel: ObservableObject {
-    @Published var messages: [Message] = []
-    @Published var currentMessage: String = ""
+    @Published var messages: [Message] = [] // 存储消息的数组
+    @Published var currentMessage: String = "" // 当前输入的消息
 
     private var chatRoomId: Int
-    
+
     init(chatRoomId: Int) {
         self.chatRoomId = chatRoomId
         loadMessages()
@@ -50,9 +51,7 @@ class MessagesViewModel: ObservableObject {
                     .select()
                     .execute()
                     .value
-                DispatchQueue.main.async {
-                    self.messages = response
-                }
+                self.messages = response
             } catch {
                 print("Error loading messages from Supabase: \(error)")
             }
@@ -60,7 +59,7 @@ class MessagesViewModel: ObservableObject {
     }
     
     func getProfileImageURL(for patronId: Int) -> String? {
-        // Implement the logic to fetch profile image URL for given patron ID
-        return nil // Replace with actual implementation
+        // 实现获取指定 patron ID 的头像 URL 的逻辑
+        return nil // 替换为实际实现
     }
 }

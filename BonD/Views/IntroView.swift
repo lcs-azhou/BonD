@@ -22,20 +22,23 @@ struct IntroView: View {
                     .tag(1)
                 
                 ZStack {
-                    IntroItem3(viewModel: MessagesViewModel( chatRoomId: 1))
+                    IntroItem3(viewModel: MessagesViewModel(chatRoomId: 1))
                         .tag(2)
+                    
                     VStack {
                         Spacer()
-                            .frame(height:500)
+                            .frame(height: 500)
+                        
                         ZStack {
                             Rectangle()
                                 .cornerRadius(10)
                                 .foregroundColor(.white)
-                                .frame(height:50)
+                                .frame(height: 50)
                                 .padding(125)
+                            
                             Text("Next")
                                 .font(.custom("PingFangSC-Thin", size: 45))
-                                .foregroundStyle(.green.opacity(0.7))
+                                .foregroundColor(.green.opacity(0.7))
                                 .onTapGesture {
                                     next = true
                                     UserDefaults.standard.set(true, forKey: "hasCompletedIntro")
@@ -44,13 +47,13 @@ struct IntroView: View {
                     }
                 }
             }
-            .background{
-                Color(.green)
+            .background {
+                Color.green
                     .opacity(0.45)
                     .ignoresSafeArea()
             }
-            .tabViewStyle(.page)
-            .indexViewStyle(.page(backgroundDisplayMode: .always))
+            .tabViewStyle(PageTabViewStyle())
+            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
         }
     }
 }

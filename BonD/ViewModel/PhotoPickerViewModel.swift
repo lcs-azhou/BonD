@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import PhotosUI
 
+@MainActor
 class SharedAlbumViewModel: ObservableObject {
     @Published var selectionResult: PhotosPickerItem? {
         didSet {
@@ -25,9 +26,7 @@ class SharedAlbumViewModel: ObservableObject {
                 if let data = try await imageSelection.loadTransferable(type: Data.self),
                    let uiImage = UIImage(data: data) {
                     let newItemImage = TodoItemImage(image: uiImage)
-                    DispatchQueue.main.async {
-                        self.albumImages.append(newItemImage)
-                    }
+                    self.albumImages.append(newItemImage)
                 }
             } catch {
                 debugPrint("Error loading image: \(error.localizedDescription)")

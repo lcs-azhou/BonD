@@ -8,6 +8,7 @@
 import Foundation
 import Supabase
 
+@MainActor
 class TodoListViewModel: ObservableObject {
     @Published var todos: [TaskItem] = []
     @Published var newTodoTitle = ""
@@ -22,6 +23,7 @@ class TodoListViewModel: ObservableObject {
         loadTodos()
     }
 
+    // 加载待办事项
     func loadTodos() {
         Task {
             do {
@@ -30,16 +32,14 @@ class TodoListViewModel: ObservableObject {
                     .select()
                     .execute()
                     .value
-
-                DispatchQueue.main.async {
-                    self.todos = response
-                }
+                self.todos = response
             } catch {
                 print("Error loading todos: \(error)")
             }
         }
     }
 
+    // 切换待办事项的完成状态
     func toggleCompletion(for todo: TaskItem) {
         if let index = todos.firstIndex(where: { $0.id == todo.id }) {
             todos[index].completion.toggle()
@@ -47,6 +47,7 @@ class TodoListViewModel: ObservableObject {
         }
     }
 
+    // 更新待办事项状态
     func updateTodoStatus(todo: TaskItem) {
         Task {
             do {
@@ -61,6 +62,7 @@ class TodoListViewModel: ObservableObject {
         }
     }
 
+    // 删除待办事项
     func deleteTodo(at offsets: IndexSet) {
         offsets.map { todos[$0] }.forEach { todo in
             Task {
@@ -78,6 +80,7 @@ class TodoListViewModel: ObservableObject {
         todos.remove(atOffsets: offsets)
     }
 
+    // 添加新待办事项
     func addTodo() {
         guard !newTodoTitle.isEmpty else { return }
         let newTodo = TaskItem(id: Int(Date().timeIntervalSince1970), taskName: newTodoTitle, completion: false)
@@ -86,6 +89,7 @@ class TodoListViewModel: ObservableObject {
         saveNewTodoToSupabase(newTodo)
     }
 
+    // 将新待办事项保存到 Supabase
     func saveNewTodoToSupabase(_ todo: TaskItem) {
         Task {
             do {

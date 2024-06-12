@@ -12,31 +12,28 @@ struct StartView: View {
     @Binding var getstarted: Bool
     
     var body: some View {
-        ZStack{
+        ZStack {
             Image("Image5")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .ignoresSafeArea()
             VStack {
                 Text("BonD")
-                    .font(
-                        .custom("PingFangSC-Thin", size: 130)
-                    )
-                    .foregroundStyle(.green.opacity(0.7))
+                    .font(.custom("PingFangSC-Thin", size: 130))
+                    .foregroundColor(.green.opacity(0.7))
                 Spacer()
                 Text("Get Started")
-                    .font(
-                        .custom("PingFangSC-Thin", size: 45)
-                    )
-                    .foregroundStyle(.green.opacity(0.7))
+                    .font(.custom("PingFangSC-Thin", size: 45))
+                    .foregroundColor(.green.opacity(0.7))
                     .onTapGesture {
                         getstarted = true
                     }
             }
+            .padding()
         }
     }
 }
 
 #Preview {
-    StartView(getstarted: Binding.constant(false))
+    StartView(getstarted: .constant(false))
 }

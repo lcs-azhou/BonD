@@ -8,10 +8,12 @@
 import SwiftUI
 import Supabase
 
+@MainActor
 class ActivitiesViewModel: ObservableObject {
     @Published var newsItems: [NewsItem] = []
     @Published var selectedImageData: Data?
 
+    // 添加活动
     func addActivity(title: String, actText: String?, author: String) {
         let imageDataString = selectedImageData?.base64EncodedString()
         let newItem = NewsItem(id: UUID().uuidString, title: title, imageData: imageDataString, actText: actText, author: author)
@@ -20,6 +22,7 @@ class ActivitiesViewModel: ObservableObject {
         selectedImageData = nil
     }
 
+    // 将活动保存到 Supabase
     private func saveActivityToSupabase(_ item: NewsItem) {
         Task {
             do {
@@ -34,7 +37,8 @@ class ActivitiesViewModel: ObservableObject {
         }
     }
 
-    private func loadActivities() {
+    // 加载活动
+    func loadActivities() {
         Task {
             do {
                 let response: [NewsItem] = try await supabaseClient
@@ -42,9 +46,7 @@ class ActivitiesViewModel: ObservableObject {
                     .select()
                     .execute()
                     .value
-                DispatchQueue.main.async {
-                    self.newsItems = response
-                }
+                self.newsItems = response
             } catch {
                 print("Error loading activities from Supabase: \(error)")
             }
