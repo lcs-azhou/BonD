@@ -12,12 +12,10 @@ import Supabase
 class MessagesViewModel: ObservableObject {
     @Published var messages: [Message] = []
     @Published var currentMessage: String = ""
-    
-    private var supabaseClient: SupabaseClient
+
     private var chatRoomId: Int
     
-    init(supabaseClient: SupabaseClient, chatRoomId: Int) {
-        self.supabaseClient = supabaseClient
+    init(chatRoomId: Int) {
         self.chatRoomId = chatRoomId
         loadMessages()
     }

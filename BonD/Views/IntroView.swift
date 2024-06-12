@@ -22,7 +22,6 @@ struct IntroView: View {
                     .tag(1)
                 
                 ZStack {
-                    let supabaseClient = SupabaseClient(supabaseURL: supabaseURL, supabaseKey: supabaseKey)
                     IntroItem3(viewModel: MessagesViewModel(supabaseClient: supabaseClient, chatRoomId: 1))
                         .tag(2)
                     VStack {
@@ -57,6 +56,5 @@ struct IntroView: View {
 }
 
 #Preview {
-    let supabaseClient = SupabaseClient(supabaseURL: supabaseURL, supabaseKey: supabaseKey)
-    return IntroView(next: .constant(false))
+    IntroView(next: .constant(false))
 }

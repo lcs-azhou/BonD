@@ -23,6 +23,8 @@
 		7935B88F2C19338F00181CA9 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = 7935B88E2C19338F00181CA9 /* Storage */; };
 		7935B8912C19338F00181CA9 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = 7935B8902C19338F00181CA9 /* Supabase */; };
 		7935B8932C19DC5B00181CA9 /* TimerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7935B8922C19DC5B00181CA9 /* TimerState.swift */; };
+		7935B8952C1A02A200181CA9 /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7935B8942C1A02A200181CA9 /* TaskItem.swift */; };
+		7935B8972C1A02C100181CA9 /* TodoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7935B8962C1A02C100181CA9 /* TodoListViewModel.swift */; };
 		794DEE3D2C13890800B3B089 /* SupabaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794DEE3C2C13890800B3B089 /* SupabaseHelper.swift */; };
 		794DEE602C138C9C00B3B089 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = 794DEE5F2C138C9C00B3B089 /* Auth */; };
 		794DEE622C138C9C00B3B089 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = 794DEE612C138C9C00B3B089 /* Functions */; };
@@ -63,6 +65,8 @@
 		790F981D2C191CB600341502 /* Patron.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patron.swift; sourceTree = "<group>"; };
 		790F98212C1925EF00341502 /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 		7935B8922C19DC5B00181CA9 /* TimerState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerState.swift; sourceTree = "<group>"; };
+		7935B8942C1A02A200181CA9 /* TaskItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
+		7935B8962C1A02C100181CA9 /* TodoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListViewModel.swift; sourceTree = "<group>"; };
 		794DEE3C2C13890800B3B089 /* SupabaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseHelper.swift; sourceTree = "<group>"; };
 		794DEE6B2C138EAB00B3B089 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7994BC272C0608E600953E4D /* PopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpView.swift; sourceTree = "<group>"; };
@@ -195,6 +199,7 @@
 				790F981D2C191CB600341502 /* Patron.swift */,
 				790F98212C1925EF00341502 /* ChatRoom.swift */,
 				7935B8922C19DC5B00181CA9 /* TimerState.swift */,
+				7935B8942C1A02A200181CA9 /* TaskItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 				79AD95232C127FB800328C5C /* TimerViewModel.swift */,
 				79FC8B472C076C4A0061CAC3 /* PhotoPickerViewModel.swift */,
 				79AD951F2C127BFE00328C5C /* ActivitiesViewModel.swift */,
+				7935B8962C1A02C100181CA9 /* TodoListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -333,7 +339,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7935B8972C1A02C100181CA9 /* TodoListViewModel.swift in Sources */,
 				79AD95222C127F9B00328C5C /* TimerView.swift in Sources */,
+				7935B8952C1A02A200181CA9 /* TaskItem.swift in Sources */,
 				79F7B9C52C120D3000641B68 /* StartView.swift in Sources */,
 				79D520CC2C0233AC000FFAB5 /* MessageViewModel.swift in Sources */,
 				790F981C2C18ECE600341502 /* NewsItem.swift in Sources */,

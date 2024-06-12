@@ -28,6 +28,5 @@ struct IntroItem3: View {
 }
 
 #Preview {
-    let supabaseClient = SupabaseClient(supabaseURL: supabaseURL, supabaseKey: supabaseKey)
-    return IntroItem3(viewModel: MessagesViewModel(supabaseClient: supabaseClient, chatRoomId: 1))
+    IntroItem3(viewModel: MessagesViewModel(chatRoomId: 1))
 }
