@@ -15,10 +15,11 @@ class TodoListViewModel: ObservableObject {
     @Published var selectedTodo: TaskItem? = nil
     @Published var showTimerView = false
 
-    init() {
-        
-            loadTodos()
-        
+    private var supabaseClient: SupabaseClient
+
+    init(supabaseClient: SupabaseClient) {
+        self.supabaseClient = supabaseClient
+        loadTodos()
     }
 
     func loadTodos() {
@@ -47,7 +48,6 @@ class TodoListViewModel: ObservableObject {
     }
 
     func updateTodoStatus(todo: TaskItem) {
-       
         Task {
             do {
                 try await supabaseClient
@@ -62,7 +62,6 @@ class TodoListViewModel: ObservableObject {
     }
 
     func deleteTodo(at offsets: IndexSet) {
-        
         offsets.map { todos[$0] }.forEach { todo in
             Task {
                 do {
@@ -80,7 +79,7 @@ class TodoListViewModel: ObservableObject {
     }
 
     func addTodo() {
-        
+        guard !newTodoTitle.isEmpty else { return }
         let newTodo = TaskItem(id: Int(Date().timeIntervalSince1970), taskName: newTodoTitle, completion: false)
         todos.append(newTodo)
         newTodoTitle = ""
@@ -88,7 +87,6 @@ class TodoListViewModel: ObservableObject {
     }
 
     func saveNewTodoToSupabase(_ todo: TaskItem) {
-        
         Task {
             do {
                 let _ = try await supabaseClient

@@ -4,23 +4,21 @@
 //
 //  Created by Ansheng Zhou on 2024-06-06.
 //
-
 import SwiftUI
-import Supabase
+import Combine
 
 struct TimerView: View {
     @ObservedObject var viewModel: TimerViewModel
-    
     let todo: TaskItem
 
     @State private var selectedMinutes = 25
-    
+
     var body: some View {
         VStack {
             Text(todo.taskName)
                 .font(.largeTitle)
                 .padding()
-            
+
             Text(viewModel.formatTime(viewModel.timeRemaining))
                 .font(.system(size: 48, weight: .bold))
                 .padding()
@@ -63,6 +61,4 @@ struct TimerView: View {
     }
 }
 
-#Preview {
-    TimerView(viewModel: TimerViewModel( supabaseClient: supabaseClient, taskId: 1), todo: TaskItem(id: 1, taskName: "Homework", completion: false))
-}
+

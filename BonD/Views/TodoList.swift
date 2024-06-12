@@ -15,31 +15,7 @@ struct TodoListView: View {
         NavigationView {
             List {
                 ForEach(viewModel.todos) { todo in
-                    HStack {
-                        Text(todo.taskName)
-                        Spacer()
-                        if todo.completion {
-                            Image(systemName: "checkmark")
-                                .foregroundColor(.green)
-                        }
-                    }
-                    .contentShape(Rectangle())
-                    .onTapGesture {
-                        viewModel.toggleCompletion(for: todo)
-                    }
-                    .contextMenu {
-                        Button {
-                            print("\(todo.taskName) has been shared")
-                        } label: {
-                            Label("Share", systemImage: "square.and.arrow.up")
-                        }
-                        Button {
-                            viewModel.selectedTodo = todo
-                            viewModel.showAlert = true
-                        } label: {
-                            Label("Start Timer", systemImage: "timer")
-                        }
-                    }
+                    TodoRowView(todo: todo, viewModel: viewModel)
                 }
                 .onDelete(perform: viewModel.deleteTodo)
             }
@@ -74,6 +50,39 @@ struct TodoListView: View {
     }
 }
 
-#Preview{
-    TodoListView(viewModel: TodoListViewModel())
+struct TodoRowView: View {
+    let todo: TaskItem
+    @ObservedObject var viewModel: TodoListViewModel
+
+    var body: some View {
+        HStack {
+            Text(todo.taskName)
+            Spacer()
+            if todo.completion {
+                Image(systemName: "checkmark")
+                    .foregroundColor(.green)
+            }
+        }
+        .contentShape(Rectangle())
+        .onTapGesture {
+            viewModel.toggleCompletion(for: todo)
+        }
+        .contextMenu {
+            Button {
+                print("\(todo.taskName) has been shared")
+            } label: {
+                Label("Share", systemImage: "square.and.arrow.up")
+            }
+            Button {
+                viewModel.selectedTodo = todo
+                viewModel.showTimerView = true
+            } label: {
+                Label("Start Timer", systemImage: "timer")
+            }
+        }
+    }
+}
+
+#Preview {
+    TodoListView(viewModel: TodoListViewModel(supabaseClient: supabaseClient))
 }

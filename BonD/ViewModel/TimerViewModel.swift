@@ -15,7 +15,7 @@ class TimerViewModel: ObservableObject {
     
     private var timer: AnyCancellable?
     private var taskId: Int
-    var supabaseClient: SupabaseClient
+    private var supabaseClient: SupabaseClient
     
     init(supabaseClient: SupabaseClient, taskId: Int, timeRemaining: Int = 1500) {
         self.supabaseClient = supabaseClient

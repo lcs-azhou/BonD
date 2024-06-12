@@ -22,7 +22,7 @@ struct LandingView: View {
 
     var body: some View {
         TabView {
-            TodoListView(viewModel: TodoListViewModel())
+            TodoListView(viewModel: TodoListViewModel(supabaseClient: supabaseClient))
                 .tabItem {
                     Label("Todos", systemImage: "checklist")
                 }

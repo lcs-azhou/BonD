@@ -3,9 +3,9 @@
 //  BonD
 //
 //  Created by Ansheng Zhou on 2024-06-12.
-//
 
 import Foundation
+import Supabase
 
 struct TimerState: Codable, Identifiable {
     var id: Int?
