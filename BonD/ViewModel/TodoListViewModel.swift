@@ -8,19 +8,21 @@
 import Foundation
 import Supabase
 
+// TodoListViewModel 负责管理待办事项列表和计时器
 @MainActor
 class TodoListViewModel: ObservableObject {
-    @Published var todos: [TaskItem] = []
-    @Published var newTodoTitle = ""
-    @Published var showAlert = false
-    @Published var selectedTodo: TaskItem? = nil
-    @Published var showTimerView = false
+    @Published var todos: [TaskItem] = [] // 待办事项列表
+    @Published var newTodoTitle = "" // 新待办事项的标题
+    @Published var showAlert = false // 是否显示警报
+    @Published var selectedTodo: TaskItem? = nil // 选中的待办事项
+    @Published var showTimerView = false // 是否显示计时器视图
 
-    private var supabaseClient: SupabaseClient
+    var supabaseClient: SupabaseClient // Supabase 客户端
 
+    // 初始化方法
     init(supabaseClient: SupabaseClient) {
         self.supabaseClient = supabaseClient
-        loadTodos()
+        loadTodos() // 加载待办事项
     }
 
     // 加载待办事项

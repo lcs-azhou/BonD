@@ -8,29 +8,30 @@
 import SwiftUI
 import Supabase
 
+// 显示待办事项列表和计时器的视图
 struct TodoListView: View {
-    @ObservedObject var viewModel: TodoListViewModel // 观察的视图模型对象
+    @ObservedObject var viewModel: TodoListViewModel
 
     var body: some View {
         NavigationView {
             List {
-                ForEach(viewModel.todos) { todo in // 遍历待办事项
+                ForEach(viewModel.todos) { todo in
                     TodoRowView(todo: todo, viewModel: viewModel) // 每个待办事项的行视图
                 }
-                .onDelete(perform: viewModel.deleteTodo) // 删除待办事项的操作
+                .onDelete(perform: viewModel.deleteTodo) // 删除待办事项
             }
-            .listStyle(.plain) // 设置列表样式
+            .listStyle(.plain)
             .background {
-                Color.green.opacity(0.3) // 设置背景颜色
+                Color.green.opacity(0.3)
             }
-            .navigationTitle("TodoList") // 设置导航栏标题
+            .navigationTitle("TodoList")
             .navigationBarItems(trailing: EditButton().foregroundColor(.green)) // 编辑按钮
             .toolbar {
-                ToolbarItem(placement: .bottomBar) { // 底部工具栏项
+                ToolbarItem(placement: .bottomBar) {
                     HStack {
-                        TextField("Add", text: $viewModel.newTodoTitle, onCommit: viewModel.addTodo) // 添加新待办事项的文本框
-                            .textFieldStyle(RoundedBorderTextFieldStyle()) // 设置文本框样式
-                        Button(action: viewModel.addTodo) { // 添加待办事项的按钮
+                        TextField("add", text: $viewModel.newTodoTitle, onCommit: viewModel.addTodo) // 添加待办事项的输入框
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        Button(action: viewModel.addTodo) { // 添加待办事项按钮
                             Image(systemName: "plus.circle.fill")
                                 .foregroundColor(.green)
                         }
@@ -38,51 +39,48 @@ struct TodoListView: View {
                     .padding()
                 }
             }
-            .sheet(isPresented: $viewModel.showTimerView) { // 显示计时器视图的弹出窗
-                if let selectedTodo = viewModel.selectedTodo { // 如果有选中的待办事项
-                    TimerView(viewModel: TimerViewModel(supabaseClient: supabaseClient, taskId: selectedTodo.id), todo: selectedTodo) // 显示计时器视图
+            .sheet(isPresented: $viewModel.showTimerView) {
+                if let selectedTodo = viewModel.selectedTodo {
+                    TimerView(viewModel: TimerViewModel(supabaseClient: viewModel.supabaseClient, taskId: selectedTodo.id), todo: selectedTodo) // 显示计时器视图
                 }
             }
         }
         .onAppear {
-            viewModel.loadTodos() // 视图出现时加载待办事项
+            viewModel.loadTodos() // 加载待办事项
         }
     }
 }
 
+// 显示单个待办事项行的视图
 struct TodoRowView: View {
-    let todo: TaskItem // 待办事项
-    @ObservedObject var viewModel: TodoListViewModel // 观察的视图模型对象
+    let todo: TaskItem
+    @ObservedObject var viewModel: TodoListViewModel
 
     var body: some View {
         HStack {
-            Text(todo.taskName) // 显示待办事项名称
+            Text(todo.taskName)
             Spacer()
             if todo.completion {
-                Image(systemName: "checkmark") // 如果待办事项已完成，显示对勾图标
+                Image(systemName: "checkmark")
                     .foregroundColor(.green)
             }
         }
-        .contentShape(Rectangle()) // 设置可点击区域
+        .contentShape(Rectangle())
         .onTapGesture {
-            viewModel.toggleCompletion(for: todo) // 点击待办事项行时切换完成状态
+            viewModel.toggleCompletion(for: todo) // 切换完成状态
         }
         .contextMenu {
             Button {
-                print("\(todo.taskName) has been shared") // 分享按钮操作
+                viewModel.selectedTodo = todo
+                viewModel.showTimerView = true
             } label: {
-                Label("Share", systemImage: "square.and.arrow.up")
-            }
-            Button {
-                viewModel.selectedTodo = todo // 设置选中的待办事项
-                viewModel.showTimerView = true // 显示计时器视图
-            } label: {
-                Label("Start Timer", systemImage: "timer")
+                Label("Start Timer", systemImage: "timer") // 启动计时器
             }
         }
     }
 }
 
+// 预览
 #Preview {
-    TodoListView(viewModel: TodoListViewModel(supabaseClient: supabaseClient)) // 预览代码
+    TodoListView(viewModel: TodoListViewModel(supabaseClient: supabaseClient))
 }

@@ -7,16 +7,15 @@
 
 import Foundation
 
-// 定义 TaskItem 结构体，表示待办事项项
+// TaskItem 结构体，用于存储待办事项信息
 struct TaskItem: Identifiable, Codable {
-    let id: Int // 待办事项唯一标识符
-    let taskName: String // 待办事项名称
-    var completion: Bool // 待办事项是否完成
+    let id: Int // 待办事项的唯一标识
+    let taskName: String // 任务名称
+    var completion: Bool // 任务是否完成
 
-    // 定义编码键，匹配 JSON 键
     enum CodingKeys: String, CodingKey {
         case id
-        case taskName = "task_name" // 自定义 JSON 键名
+        case taskName = "task_name"
         case completion
     }
 }
