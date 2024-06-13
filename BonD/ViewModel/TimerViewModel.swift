@@ -70,13 +70,16 @@ class TimerViewModel: ObservableObject {
     private func saveTimerState() {
         Task {
             do {
-                let timerState = TimerState(
+                var timerState = TimerState(
                     id: nil, // 不设置 id，数据库会自动生成
                     task_id: self.taskId,
                     time_remaining: self.timeRemaining,
                     timer_running: self.timerRunning,
                     updated_at: Date()
                 )
+                
+                // 将 id 设置为 nil，以确保数据库自动生成
+                timerState.id = nil
                 
                 let _ = try await self.supabaseClient
                     .from("timers")
