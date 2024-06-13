@@ -41,7 +41,7 @@ struct TodoListView: View {
             }
             .sheet(isPresented: $viewModel.showTimerView) {
                 if let selectedTodo = viewModel.selectedTodo {
-                    TimerView(viewModel: TimerViewModel(supabaseClient: viewModel.supabaseClient, taskId: selectedTodo.id), todo: selectedTodo) // 显示计时器视图
+                    TimerView(viewModel: TimerViewModel(supabaseClient: supabaseClient, taskId: selectedTodo.id), todo: selectedTodo) // 显示计时器视图
                 }
             }
         }

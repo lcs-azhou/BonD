@@ -17,7 +17,7 @@ class TimerViewModel: ObservableObject {
     
     private var timer: AnyCancellable? // 计时器的订阅者
     private var taskId: Int // 任务 ID
-    private var supabaseClient: SupabaseClient // Supabase 客户端
+    var supabaseClient: SupabaseClient // Supabase 客户端
     
     // 初始化方法
     init(supabaseClient: SupabaseClient, taskId: Int, timeRemaining: Int = 1500) {
@@ -105,6 +105,28 @@ class TimerViewModel: ObservableObject {
                 }
             } catch {
                 print("Error loading timer state from Supabase: \(error)")
+            }
+        }
+    }
+    
+    // 召唤进行中的timer
+    func loadRunningTimer() {
+        Task {
+            do {
+                let response: [TimerState] = try await self.supabaseClient
+                    .from("timers")
+                    .select()
+                    .eq("timer_running", value: true)
+                    .execute()
+                    .value
+                
+                if let timerState = response.first {
+                    self.timeRemaining = timerState.time_remaining
+                    self.timerRunning = timerState.timer_running
+                    self.taskId = timerState.task_id
+                }
+            } catch {
+                print("Error loading running timer from Supabase: \(error)")
             }
         }
     }

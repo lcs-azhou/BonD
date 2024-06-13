@@ -27,7 +27,7 @@ struct TimerView: View {
                 .font(.system(size: 48, weight: .bold))
                 .padding()
             
-            HStack {
+            VStack {
                 // 选择分钟数的选择器
                 Picker("", selection: $selectedMinutes) {
                     ForEach(1..<61) { minute in
@@ -44,7 +44,7 @@ struct TimerView: View {
                     viewModel.startTimer()
                 }) {
                     Text("Start")
-                        .font(.title)
+                        .font(.caption2)
                         .padding()
                         .background(Color.green)
                         .foregroundColor(.white)
@@ -56,9 +56,21 @@ struct TimerView: View {
                     viewModel.pauseTimer()
                 }) {
                     Text("Pause")
-                        .font(.title)
+                        .font(.caption2)
                         .padding()
                         .background(Color.red)
+                        .foregroundColor(.white)
+                        .clipShape(Capsule())
+                }
+                
+                // 召唤进行中的timer按钮
+                Button(action: {
+                    viewModel.loadRunningTimer()
+                }) {
+                    Text("Resume")
+                        .font(.caption2)
+                        .padding()
+                        .background(Color.blue)
                         .foregroundColor(.white)
                         .clipShape(Capsule())
                 }
