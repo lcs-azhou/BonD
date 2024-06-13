@@ -1,10 +1,3 @@
-//
-//  LoginView.swift
-//  BonD
-//
-//  Created by Ansheng Zhou on 2024-06-07.
-//
-
 import SwiftUI
 import PhotosUI
 
@@ -18,6 +11,8 @@ struct LoginView: View {
     @State private var chatRoomCode: String = ""
     @State private var alertMessage: String = ""
     @State private var showAlert: Bool = false
+    @AppStorage("haschosenlogin") private var appHasChosenLogin = false // 使用 @AppStorage 存储登录状态
+    @AppStorage("author") private var author: String = "" // 存储用户名称
     @StateObject private var viewModel = SharedAlbumViewModel()
     
     var body: some View {
@@ -44,15 +39,22 @@ struct LoginView: View {
                         .frame(width: 100, height: 100)
                         .clipShape(Circle())
                         .shadow(radius: 5)
-                    
                 }
             }
             .padding(.bottom, 20)
             .sheet(isPresented: $isImagePickerPresented) {
                 PhotosPicker(selection: $viewModel.selectionResult, matching: .images) {
-                    Text("Select Photo")
+                    ZStack {
+                        Rectangle()
+                            .foregroundColor(.green.opacity(0.3))
+                            .cornerRadius(8)
+                            .frame(height: 45)
+                            .padding(130)
+                        Text("Select Photo")
+                            .accentColor(.green)
+                    }
                 }
-            }
+            }.accentColor(.green)
             TextField("First Name", text: $firstName)
                 .padding()
                 .background(Color(.systemGray6))
@@ -72,18 +74,8 @@ struct LoginView: View {
                 .padding(.bottom, 20)
                 .keyboardType(.emailAddress)
             
-            TextField("Chat Room Code (Optional)", text: $chatRoomCode)
-                .padding()
-                .background(Color(.systemGray6))
-                .cornerRadius(5.0)
-                .padding(.bottom, 20)
-            
             Button(action: {
-                if chatRoomCode.isEmpty {
-                    createChatRoom()
-                } else {
-                    joinChatRoom()
-                }
+                loginUser()
             }) {
                 Text("Login")
                     .font(.headline)
@@ -103,56 +95,14 @@ struct LoginView: View {
         .padding()
     }
     
-    private func createChatRoom() {
-        Task {
-            do {
-                let code = UUID().uuidString.prefix(6).lowercased()
-                let _ = try await supabaseClient
-                    .from("ChatRoom")
-                    .insert(["code": code])
-                    .execute()
-                
-                let newPatron = Patron(id: 0, name_first: firstName, name_last: lastName, email: email, profile_image_url: nil)
-                let _ = try await supabaseClient
-                    .from("patron")
-                    .insert(newPatron)
-                    .execute()
-                
-                alertMessage = "Chat room created with code: \(code)"
-                showAlert = true
-            } catch {
-                alertMessage = "Error creating chat room: \(error)"
-                showAlert = true
-            }
-        }
-    }
-    
-    private func joinChatRoom() {
-        Task {
-            do {
-                let response: [ChatRoom] = try await supabaseClient
-                    .from("ChatRoom")
-                    .select()
-                    .eq("code", value: chatRoomCode)
-                    .execute()
-                    .value
-                
-                if response.isEmpty {
-                    alertMessage = "Chat room code not found."
-                } else {
-                    let newPatron = Patron(id: 0, name_first: firstName, name_last: lastName, email: email, profile_image_url: nil)
-                    let _ = try await supabaseClient
-                        .from("patron")
-                        .insert(newPatron)
-                        .execute()
-                    
-                    alertMessage = "Joined chat room with code: \(chatRoomCode)"
-                }
-                showAlert = true
-            } catch {
-                alertMessage = "Error joining chat room: \(error)"
-                showAlert = true
-            }
+    private func loginUser() {
+        if firstName.isEmpty || lastName.isEmpty || email.isEmpty {
+            alertMessage = "Please fill all fields."
+            showAlert = true
+        } else {
+            // 假设登录成功，保存用户信息并跳转到 LandingView
+            author = "\(firstName) \(lastName)"
+            appHasChosenLogin = true
         }
     }
 }
